@@ -104,5 +104,5 @@ st.title("Visualización preliminar proyecto")
 stripplot | legend
 
 
-st.altair_chart(stripplot.interactive(), use_container_width=True)
+st.altair_chart(stripplot, use_container_width=False)
 
