@@ -11,6 +11,9 @@ import numpy as np
 from altair.expr import datum
 import streamlit as st
 
+[theme]
+base="dark"
+primaryColor="purple"
 
 # In[2]:
 
