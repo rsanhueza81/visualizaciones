@@ -103,5 +103,5 @@ legend = alt.Chart(data1).mark_rect().encode(
 #stripplot | legend
 
 
-#st.altair_chart((stripplot + legend).interactive(), use_container_width=True)
+st.altair_chart((stripplot + legend).interactive(), use_container_width=True)
 
