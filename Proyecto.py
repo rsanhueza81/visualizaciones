@@ -5,7 +5,7 @@
 
 
 import altair as alt
-from vega_datasets import data
+#from vega_datasets import data
 import pandas as pd
 import numpy as np
 from altair.expr import datum
