@@ -14,4 +14,5 @@ st.write(df.head(5))
 c = alt.Chart(df).mark_circle().encode(
      x='a', y='b', color='c', tooltip=['a', 'b', 'c'])
 
-st.altair_chart(c, use_container_width=True)
+c
+#st.altair_chart(c, use_container_width=True)
