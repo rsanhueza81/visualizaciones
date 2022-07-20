@@ -105,4 +105,4 @@ stripplot | legend
 
 
 st.altair_chart(legend, use_container_width=False)
-
+st.altair_chart(stripplot, use_container_width=False) #### acá hay problemas
