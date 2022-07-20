@@ -100,6 +100,7 @@ legend = alt.Chart(data1).mark_rect().encode(
     selection
 )
 
+st.title("Visualización preliminar proyecto")
 stripplot | legend
 
 
