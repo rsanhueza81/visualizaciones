@@ -27,7 +27,7 @@ data = pd.read_csv('almagro_cot.csv')
 # In[ ]:
 
 
-data.columns
+#data.columns
 
 
 # In[ ]:
