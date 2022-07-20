@@ -90,7 +90,7 @@ stripplot =  alt.Chart(data1, width=40).mark_circle(size=8).encode(
 ).transform_calculate(
     # Generate Gaussian jitter with a Box-Muller transform
     jitter='sqrt(-2*log(random()))*cos(2*PI*random())'
-)
+).interactive()
 
 legend = alt.Chart(data1).mark_rect().encode(
     y=alt.Y('programa:N', axis=alt.Axis(orient='right')),
@@ -98,7 +98,7 @@ legend = alt.Chart(data1).mark_rect().encode(
     color=color
 ).add_selection(
     selection
-)
+).interactive()
 
 st.title("Visualización preliminar proyecto")
 stripplot | legend
