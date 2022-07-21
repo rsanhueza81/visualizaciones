@@ -84,18 +84,20 @@ m = df2.select_dtypes(np.number)
 df2[m.columns]= m.round().astype('Int64')
 
 #with row1_1:
-st.header('Datos a utilizar en el proyecto')
-st.subheader('Descripción de la data:')
-st.write(
-        """
-    ##
-    Examining how Uber pickups vary over time in New York City's and at its major regional airports.
-    By sliding the slider on the left you can view different slices of time and explore different transportation trends.
-    """
-    )
-
-st.subheader('Muestra de la data:')
+st.subheader('Muestra y descripción de la data')
+st.write('Muestra de la data:')
 st.dataframe(df2.iloc[0:5])
+st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos de una importante empresa imobiliaria Chilena
+
+asdasdas
+
+
+asdasd
+
+asdas
+""")
+
+
 #with row1_2:
 
 
