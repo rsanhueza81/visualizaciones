@@ -75,7 +75,7 @@ row1_1, row1_2 = st.columns((2, 3))
 
 with row1_1:
     st.header('Muestra de la data a utilizar:')
-    st.table(data.iloc[0:10])
+    st.dataframe(data.iloc[0:5])
 with row1_2:
     st.write(
         """
