@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 from altair.expr import datum
 import streamlit as st
-from streamlit_vega_lite import altair_component
+#from streamlit_vega_lite import altair_component
 
 
 
