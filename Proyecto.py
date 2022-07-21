@@ -9,7 +9,7 @@ from altair.expr import datum
 import streamlit as st
 
 
-st.set_page_config(layout="wide")
+#st.set_page_config(layout="wide")
 alt.data_transformers.disable_max_rows()
 
 #####################################################################
@@ -159,8 +159,7 @@ st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos en
      - **Datos relacionados con la cotización:** ID único, fecha cotización, precio mostrado en cotización, fecha reserva (si corresponde) , precio prometido en la reserva, canal de origen.
      - **Datos relacionados con el proyecto:** Nombre, comuna, programa. 
      - **Datos relacionados con el departamento:** Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
-     - **Datos relacionados con el cliente:** Rut, Nombre, comuna de residencia, estado civil, edad, profesión
-""")
+     - **Datos relacionados con el cliente:** Rut, Nombre, comuna de residencia, estado civil, edad, profesión """)
 
 st.subheader('Prototipo de Idiom:')
 
