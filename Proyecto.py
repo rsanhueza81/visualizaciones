@@ -69,7 +69,7 @@ color = alt.condition(selection,
                       alt.Color('programa:N', legend=None),
                       alt.value('lightgray'))
 
-stripplot =  alt.Chart(data1, width=40).mark_circle(size=8).encode(
+stripplot =  (alt.Chart(data1, width=40).mark_circle(size=8).encode(
     x=alt.X(
         'jitter:Q',
         title=None,
@@ -91,7 +91,7 @@ stripplot =  alt.Chart(data1, width=40).mark_circle(size=8).encode(
 ).transform_calculate(
     # Generate Gaussian jitter with a Box-Muller transform
     jitter='sqrt(-2*log(random()))*cos(2*PI*random())'
-).interactive()
+).interactive())
 
 legend = alt.Chart(data1).mark_rect().encode(
     y=alt.Y('programa:N', axis=alt.Axis(orient='right')),
