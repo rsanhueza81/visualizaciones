@@ -71,13 +71,13 @@ legend = alt.Chart(data1).mark_rect().encode(
 
 st.title("Visualización preliminar proyecto")
 
-row1_1, row1_2 = st.columns((2, 3))
+#row1_1, row1_2 = st.columns((2, 3))
 
-with row1_1:
-    st.header('Muestra de la data a utilizar:')
-    st.dataframe(data.iloc[0:5])
-with row1_2:
-    st.write(
+#with row1_1:
+st.header('Muestra de la data a utilizar:')
+st.dataframe(data.iloc[0:5])
+#with row1_2:
+st.write(
         """
     ##
     Examining how Uber pickups vary over time in New York City's and at its major regional airports.
