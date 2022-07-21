@@ -84,7 +84,7 @@ stripplot = stripplot.properties(title=alt.TitleParams(
     subtitleColor="#525252",
     anchor="start"
         ),
-    width=800,
+    width=200,
     height=300)
 
 legend = alt.Chart(data1).mark_bar().encode(
