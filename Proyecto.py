@@ -1,16 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
 
 import altair as alt
-#from vega_datasets import data
 import pandas as pd
 import numpy as np
 from altair.expr import datum
 import streamlit as st
-#from streamlit_vega_lite import altair_component
 
 
 
@@ -78,8 +74,8 @@ st.title("Visualización preliminar proyecto")
 row1_1, row1_2 = st.columns((2, 3))
 
 with row1_1:
-    st.title("NYC Uber Ridesharing Data")
-
+    st.header('Muestra de la data a utilizar:')
+    st.table(data.iloc[0:10])
 with row1_2:
     st.write(
         """
