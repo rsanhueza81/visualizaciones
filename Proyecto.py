@@ -41,6 +41,8 @@ data1 = data1[data1.programa.isin(data1['programa'].value_counts()[:8].index)]
 #####################################################################
 ######################## VISUALIZACION 1 ############################
 #####################################################################
+
+data1=data.sample(6000)
 selection = alt.selection_single(fields=['reservado'])
 
 color = alt.condition(selection,
@@ -80,7 +82,10 @@ stripplot = stripplot.properties(title=alt.TitleParams(
     color='#3169A4',
     subtitleFontSize=16,
     subtitleColor="#525252",
-    anchor="start"))
+    anchor="start"
+    width=800,
+    height=300
+        ))
 
 
 legend = alt.Chart(data1).mark_bar().encode(
