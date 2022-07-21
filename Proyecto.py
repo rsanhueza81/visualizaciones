@@ -83,7 +83,7 @@ stripplot = stripplot.properties(title=alt.TitleParams(
     subtitleFontSize=16,
     subtitleColor="#525252",
     anchor="start"
-        )
+        ),
     width=800,
     height=300)
 
