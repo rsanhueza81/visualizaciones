@@ -73,19 +73,19 @@ st.title("Visualización preliminar proyecto")
 
 #row1_1, row1_2 = st.columns((2, 3))
 
-#df2=data1[['Num_Operacion','Fecha Cotizacion','Nombre Proyecto','Nombre Etapa','Comuna Proyecto','Programa','Precio de Venta en Uf Cotizacion','Nombre_Propiedad','Modelo_Propiedad', 'Tipo Unidad',
-#       'Metros Cuadrados','N° Dormitorios','N° Baños','Fecha Reserva','Precio de Venta en UF Reserva','ID Cliente','Nombre Cliente','Comuna Cliente','Estado Civil','Edad','Profesion','TipoMedio']]
+df2=data1[['Num_Operacion','Fecha Cotizacion','Nombre Proyecto','Nombre Etapa','Comuna Proyecto','Programa','Precio de Venta en Uf Cotizacion','Nombre_Propiedad','Modelo_Propiedad', 'Tipo Unidad',
+       'Metros Cuadrados','N° Dormitorios','N° Baños','Fecha Reserva','Precio de Venta en UF Reserva','ID Cliente','Nombre Cliente','Comuna Cliente','Estado Civil','Edad','Profesion','TipoMedio']].copy()
 
-#data1.columns=['Id_cotizacion','Fecha_cotizacion','Nombre_proyecto','Nombre_etapa','Comuna_proyecto'
-#            ,'Programa_proyecto','Precio_cotizacion','Nombre_propiedad','Modelo_propiedad','Tipo_unidad','M2','N_dormitorios','N_banos',
-#            'Fecha_reserva','Precio_reserva','RUT_cliente','Nombre_cliente','Comuna_cliente','Estado_civil','Edad','Profesion','Origen_cotizacion']
+data1.columns=['Id_cotizacion','Fecha_cotizacion','Nombre_proyecto','Nombre_etapa','Comuna_proyecto'
+            ,'Programa_proyecto','Precio_cotizacion','Nombre_propiedad','Modelo_propiedad','Tipo_unidad','M2','N_dormitorios','N_banos',
+            'Fecha_reserva','Precio_reserva','RUT_cliente','Nombre_cliente','Comuna_cliente','Estado_civil','Edad','Profesion','Origen_cotizacion']
 
-m = data1.select_dtypes(np.number)
-data1[m.columns]= m.round().astype('Int64')
+m = df2.select_dtypes(np.number)
+df2[m.columns]= m.round().astype('Int64')
 
 #with row1_1:
 st.header('Muestra de la data a utilizar:')
-st.dataframe(data1.iloc[0:5])
+st.dataframe(df2.iloc[0:5])
 #with row1_2:
 st.write(
         """
