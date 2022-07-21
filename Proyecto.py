@@ -84,9 +84,8 @@ m = df2.select_dtypes(np.number)
 df2[m.columns]= m.round().astype('Int64')
 
 #with row1_1:
-st.header('Muestra de la data a utilizar:')
-st.dataframe(df2.iloc[0:5])
-#with row1_2:
+st.header('Datos a utilizar en el proyecto')
+st.subheader('Descripción de la data:')
 st.write(
         """
     ##
@@ -94,6 +93,11 @@ st.write(
     By sliding the slider on the left you can view different slices of time and explore different transportation trends.
     """
     )
+
+st.subheader('Muestra de la data:')
+st.dataframe(df2.iloc[0:5])
+#with row1_2:
+
 
 stripplot | legend
 
