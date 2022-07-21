@@ -9,7 +9,7 @@ from altair.expr import datum
 import streamlit as st
 
 
-st.set_page_config(layout="wide")
+#st.set_page_config(layout="wide")
 alt.data_transformers.disable_max_rows()
 
 #####################################################################
