@@ -154,7 +154,7 @@ st.write('**Muestra de la data:**')
 st.dataframe(df2.iloc[0:5])
 st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos entre 2020 y 2021 en una importante empresa imobiliaria nacional. 
 
-    Se destacan tres familias de variables:
+Se destacan tres familias de variables:
 
      - **Datos relacionados con la cotización:** ID único, fecha cotización, precio mostrado en cotización, fecha reserva (si corresponde) , precio prometido en la reserva, canal de origen.
      - **Datos relacionados con el proyecto:** Nombre, comuna, programa. 
