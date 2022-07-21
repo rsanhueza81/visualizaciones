@@ -87,17 +87,20 @@ df2[m.columns]= m.round().astype('Int64')
 st.subheader('Muestra y descripción de la data')
 st.write('Muestra de la data:')
 st.dataframe(df2.iloc[0:5])
-st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos de una importante empresa imobiliaria nacional. Se destacan tres familias de variables:
+st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos entre 2020 y 2021 en una importante empresa imobiliaria nacional. 
 
- - asd
- - asdasd
- - asdasd
+Se destacan tres familias de variables:
+
+ - Datos relacionados con la cotización: ID único, fecha cotización, precio mostrado en cotización, fecha reserva (si corresponde) , precio prometido en la reserva, canal de origen.
+ - Datos relacionados con el proyecto: Nombre, comuna, programa. 
+ - Datos relacionados con el departamento: Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
+ - Datos relacionados con el cliente: Rut, Nombre, comuna de residencia, estado civil, edad, profesión
 
 """)
 
 
 #with row1_2:
-
+st.write('Prototipo de Idiom:')
 
 stripplot | legend
 
