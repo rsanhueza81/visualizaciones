@@ -14,22 +14,8 @@ import streamlit as st
 
 
 
-# In[2]:
-
-
 alt.data_transformers.disable_max_rows()
-
-
-# In[3]:
-
-
 data = pd.read_csv('almagro_cot.csv')
-
-
-# In[ ]:
-
-
-#data.columns
 
 data1 = data.copy()
 data1 = data1[data1['Tipo Unidad'] =='Departamento']
@@ -40,31 +26,16 @@ data1['uf_m2'] = data1.precio/data1.m2
 data1 = data1[data1.comuna_cli.isin(data1.comuna_cli.value_counts()[:10].index)]
 data1 = data1[data1.uf_m2<200] 
 data1 = data1[data1.estado_civil!='Empresa']
-
-
-# In[ ]:
-
-
 data1.loc[data1.programa.isin(['TRADICIONAL KC']), 'programa'] = 'Tradicional KC'
 data1.loc[data1.programa.isin(['TRADICIONAL KA']), 'programa'] = 'Tradicional KA'
 data1.loc[data1.programa.isin(['PENTHOUSE 2 PISOS','PENTHOUSE  2 PISOS','Penthouse 2']), 'programa'] = 'Penthouse 2 pisos'
 data1.loc[data1.programa.isin(['Palomita']), 'programa'] = 'Paloma'
 data1 = data1[data1.programa.isin(data1['programa'].value_counts()[:8].index)]
-
-
-# In[4]:
-
-
 data1.loc[data1.estado_civil.str.contains('Casado'), 'estado_civil'] = 'Casado(a)'
 data1.loc[data1.estado_civil.str.contains('Union Civil'), 'estado_civil'] = 'Casado(a)'
 data1.loc[data1.estado_civil.str.contains('Soltero'), 'estado_civil'] = 'Soltero(a)'
 data1.loc[data1.estado_civil.str.contains('Separado'), 'estado_civil'] = 'Divorciado(a)'
 data1.loc[data1.estado_civil.str.contains('0'), 'estado_civil'] = 'Sin información'
-
-
-# In[5]:
-
-
 selection = alt.selection_multi(fields=['programa', 'n_dormitorios'])
 color = alt.condition(selection,
                       alt.Color('programa:N', legend=None),
@@ -103,8 +74,24 @@ legend = alt.Chart(data1).mark_rect().encode(
 ).interactive()
 
 st.title("Visualización preliminar proyecto")
+
+row1_1, row1_2 = st.columns((2, 3))
+
+with row1_1:
+    st.title("NYC Uber Ridesharing Data")
+    hour_selected = st.slider(
+        "Select hour of pickup", 0, 23, key="pickup_hour", on_change=update_query_params
+    )
+
+
+with row1_2:
+    st.write(
+        """
+    ##
+    Examining how Uber pickups vary over time in New York City's and at its major regional airports.
+    By sliding the slider on the left you can view different slices of time and explore different transportation trends.
+    """
+    )
+
 stripplot | legend
 
-
-#st.altair_chart(legend, use_container_width=False)
-#st.altair_chart(stripplot, use_container_width=False) #### acá hay problemas
