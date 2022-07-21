@@ -79,10 +79,6 @@ row1_1, row1_2 = st.columns((2, 3))
 
 with row1_1:
     st.title("NYC Uber Ridesharing Data")
-    hour_selected = st.slider(
-        "Select hour of pickup", 0, 23, key="pickup_hour", on_change=update_query_params
-    )
-
 
 with row1_2:
     st.write(
