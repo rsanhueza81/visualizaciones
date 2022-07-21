@@ -139,8 +139,6 @@ legend = legend.add_selection(
 ################################################################################
 st.title("Visualización preliminar proyecto")
 
-row1_1, row1_2 = st.columns((2, 3))
-
 df2=data[['Num_Operacion','Fecha Cotizacion','Nombre Proyecto','Nombre Etapa','Comuna Proyecto','Programa','Precio de Venta en Uf Cotizacion','Nombre_Propiedad','Modelo_Propiedad', 'Tipo Unidad',
        'Metros Cuadrados','N° Dormitorios','N° Baños','Fecha Reserva','Precio de Venta en UF Reserva','ID Cliente','Nombre Cliente','Comuna Cliente','Estado Civil','Edad','Profesion','TipoMedio']].copy()
 
@@ -152,11 +150,9 @@ m = df2.select_dtypes(np.number)
 df2[m.columns]= m.round().astype('Int64')
 
 st.subheader('Muestra y descripción de la data')
-with row1_2:   
-    st.write('**Muestra de la data:**')
-    st.dataframe(df2.iloc[0:5])
-with row1_1:
-    st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos entre 2020 y 2021 en una importante empresa imobiliaria nacional. 
+st.write('**Muestra de la data:**')
+st.dataframe(df2.iloc[0:5])
+st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos entre 2020 y 2021 en una importante empresa imobiliaria nacional. 
 
     Se destacan tres familias de variables:
 
@@ -164,10 +160,7 @@ with row1_1:
      - **Datos relacionados con el proyecto:** Nombre, comuna, programa. 
      - **Datos relacionados con el departamento:** Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
      - **Datos relacionados con el cliente:** Rut, Nombre, comuna de residencia, estado civil, edad, profesión
-
-    """)
-
-
+""")
 
 st.subheader('Prototipo de Idiom:')
 
