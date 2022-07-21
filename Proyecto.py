@@ -83,10 +83,7 @@ stripplot = stripplot.properties(title=alt.TitleParams(
     subtitleFontSize=16,
     subtitleColor="#525252",
     anchor="start"
-        ),
-    width=800,
-    height=300)
-
+        ))
 
 legend = alt.Chart(data1).mark_bar().encode(
     y=alt.Y('count()', title='Cantidad cotizaciones'),
