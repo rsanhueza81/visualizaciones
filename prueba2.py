@@ -12,3 +12,9 @@ with st.sidebar:
         "nav-link-selected": {"background-color": "#02ab21"},
     }
     )
+
+Acá tengo que explicar":
+    
+    st.title("Acá tengo que explicar")
+    
+    
