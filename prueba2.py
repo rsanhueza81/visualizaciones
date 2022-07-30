@@ -64,8 +64,6 @@ if choose == "Contexto y usuarios":
     st.image(image )
     
 if choose == "Datos":
-    st.title("Visualización preliminar proyecto")
-
     df2=data[['Num_Operacion','Fecha Cotizacion','Nombre Proyecto','Nombre Etapa','Comuna Proyecto','Programa','Precio de Venta en Uf Cotizacion','Nombre_Propiedad','Modelo_Propiedad', 'Tipo Unidad',
        'Metros Cuadrados','N° Dormitorios','N° Baños','Fecha Reserva','Precio de Venta en UF Reserva','ID Cliente','Nombre Cliente','Comuna Cliente','Estado Civil','Edad','Profesion','TipoMedio']].copy()
 
@@ -76,11 +74,13 @@ if choose == "Datos":
     m = df2.select_dtypes(np.number)
     df2[m.columns]= m.round().astype('Int64')
 
-    st.subheader('Muestra y descripción de la data')
+    st.header('Muestra y descripción de la data')
     st.write('**Muestra de la data:**')
     st.dataframe(df2.iloc[0:5])
     st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos entre 2020 y 2021 en una importante empresa imobiliaria nacional. 
+    
     Se destacan cuatro familias de variables:
+    
     - **Datos relacionados con la cotización:** ID único, fecha cotización, precio mostrado en cotización, fecha reserva (si corresponde) , precio prometido en la reserva, canal de origen.
     - **Datos relacionados con el proyecto:** Nombre, comuna, programa. 
     - **Datos relacionados con el departamento:** Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
