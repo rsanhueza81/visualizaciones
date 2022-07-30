@@ -44,7 +44,7 @@ data1 = data1[data1.programa.isin(data1['programa'].value_counts()[:8].index)]
 with st.sidebar:
     choose = option_menu("Proyecto Visualización de la Información", ["Contexto y usuarios", "Datos", "Tareas", "Visualizaciones"],
                          icons=['people-fill', 'table', 'list-task', 'file-bar-graph'],
-                         menu_icon="app-indicator", default_index=0,
+                         menu_icon="building", default_index=0,
                          styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
         "icon": {"color": "orange", "font-size": "25px"}, 
