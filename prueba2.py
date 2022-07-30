@@ -69,22 +69,22 @@ if choose == "Datos":
 
     df2.columns=['Id_cotizacion','Fecha_cotizacion','Nombre_proyecto','Nombre_etapa','Comuna_proyecto'
             ,'Programa_proyecto','Precio_cotizacion','Nombre_propiedad','Modelo_propiedad','Tipo_unidad','M2','N_dormitorios','N_banos',
-            'Fecha_reserva','Precio_reserva','RUT_cliente','Nombre_cliente','Comuna_cliente','Estado_civil','Edad','Profesion','Origen_cotizacion']
+            'Fecha_reserva','Precio_reserva','Comuna_cliente','Estado_civil','Edad','Profesion','Origen_cotizacion']
 
     m = df2.select_dtypes(np.number)
     df2[m.columns]= m.round().astype('Int64')
 
-    st.header('Muestra y descripción de la data')
+    st.title('Muestra y descripción de la data')
     st.write('**Muestra de la data:**')
     st.dataframe(df2.iloc[0:5])
     st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos entre 2020 y 2021 en una importante empresa imobiliaria nacional. 
     
     Se destacan cuatro familias de variables:
     
-    - **Datos relacionados con la cotización:** ID único, fecha cotización, precio mostrado en cotización, fecha reserva (si corresponde) , precio prometido en la reserva, canal de origen.
-    - **Datos relacionados con el proyecto:** Nombre, comuna, programa. 
-    - **Datos relacionados con el departamento:** Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
-    - **Datos relacionados con el cliente:** Rut, Nombre, comuna de residencia, estado civil, edad, profesión """)
+        -**Datos relacionados con la cotización:** ID único, fecha cotización, precio mostrado en cotización, fecha reserva (si corresponde) , precio prometido en la reserva, canal de origen.
+        -**Datos relacionados con el proyecto:** Nombre, comuna, programa. 
+        -**Datos relacionados con el departamento:** Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
+        -**Datos relacionados con el cliente:** Rut, Nombre, comuna de residencia, estado civil, edad, profesión """)
 
     
    
