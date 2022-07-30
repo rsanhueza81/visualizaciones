@@ -76,7 +76,7 @@ data_v1=data1.sample(6000,random_state=3).copy()
 programas=list(data1.programa.unique())
 tipos_dpto = st.multiselect('Selecciona el tipo de departamento:', programas ,programas)
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(2,gap='medium')
 
 with col1:
        slider_banos = st.slider('Número de baños',1, 4, (1,4),step=1)
