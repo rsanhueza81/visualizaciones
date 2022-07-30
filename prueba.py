@@ -84,6 +84,9 @@ with col2:
 #with col3:
 #       slider_com = st.slider('Número de com',1, 4, (1,4),step=1)
 
+options = st.multiselect('What are your favorite colors', ['Green', 'Yellow', 'Red', 'Blue'],['Yellow', 'Red'])
+st.write('You selected:', options)
+
 data_v1=data_v1[ (data_v1['n_banos']>=slider_banos[0]) & (data_v1['n_banos']<=slider_banos[1])]
 data_v1=data_v1[(data_v1['n_dorm']>=slider_dormitorios[0]) & (data_v1['n_dorm']<=slider_dormitorios[1])]
 
