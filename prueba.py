@@ -23,7 +23,7 @@ data1 = data1[['N° Dormitorios','N° Baños','Comuna Proyecto','Precio de Venta
 data1.columns = ['n_dormitorios', 'n_baños', 'comuna_proy', 'precio','m2','estado_civil','comuna_cli', 'edad','programa','fecha_reserva','nombre_proyecto']
 
 data1['n_dormitorios'] = data1.n_dormitorios.astype(int).astype(str)
-data_1['n_banos']=data1.n_baños.astype(int)
+data1['n_banos']=data1.n_baños.astype(int)
 data1['n_baños'] = data1.n_baños.astype(int).astype(str)
 data1['reservado'] = 'No'
 data1.loc[data1.fecha_reserva.notna(), 'reservado'] = 'Sí'
