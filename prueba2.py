@@ -15,6 +15,8 @@ with st.sidebar:
 
 if choose == "Contexto y usuarios":
     
-    st.title("Acá tengo que explicar")
+    st.title("Contexto y usuarios")
+    st.text("en un encuentro anual")
+    
     
     
