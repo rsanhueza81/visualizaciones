@@ -94,8 +94,8 @@ if choose == "Tareas":
     st.write("Presentar la evolución en la demanda de productos  de la inmobiliaria y su tasa de concreción en negocios (promesas de compra venta)."
     
     
-    image2 = Image.open('almagro2.jpg')
-    st.image(image2 )
+    imagedos = Image.open('almagro2.jpg')
+    st.image(imagedos)
     
     
  
