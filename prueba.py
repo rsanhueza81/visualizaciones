@@ -76,7 +76,7 @@ st.subheader('Prototipo de Idiom:')
 data_v1=data1.sample(6000,random_state=3).copy()
 
 programas=list(data1.programa.unique())
-options = st.multiselect('Selecciona el tipo de departamento:', programas ,programas)
+tipos_dpto = st.multiselect('Selecciona el tipo de departamento:', programas ,programas)
 
 col1, col2 = st.columns(2)
 
@@ -89,7 +89,7 @@ with col2:
 
 data_v1=data_v1[ (data_v1['n_banos']>=slider_banos[0]) & (data_v1['n_banos']<=slider_banos[1])]
 data_v1=data_v1[(data_v1['n_dorm']>=slider_dormitorios[0]) & (data_v1['n_dorm']<=slider_dormitorios[1])]
-data_v1=data_v1[data_v1.programa.isin(options)]
+data_v1=data_v1[data_v1.programa.isin(tipos_dpto)]
 
 selection = alt.selection_single(fields=['reservado'])
 
@@ -179,5 +179,7 @@ legend = alt.Chart(data_v1).mark_bar().encode(
 #).transform_filter(
 #    programa_select
 #)
-
-stripplot | legend
+if len(tipos_dpto)==0:
+       st.subheader('No hay cotizaciones para los filtros seleccionados')
+else:
+       stripplot | legend
