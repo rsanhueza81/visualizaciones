@@ -67,7 +67,7 @@ Se destacan cuatro familias de variables:
 st.subheader('Prototipo de Idiom:')
 
 slider_banos = st.slider('Select a range of values',1, 4, (1, 4),step=1)
-st.write('Values:', slider_banos[0])
+st.write('Values:', type(slider_banos[0]))
 
 #####################################################################
 ######################## VISUALIZACION 1 ############################
