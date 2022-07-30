@@ -77,7 +77,6 @@ data_v1=data1.sample(6000,random_state=3).copy()
 
 programas=list(data1.programa.unique())
 options = st.multiselect('Selecciona el tipo de departamento:', programas ,programas)
-st.write('You selected:', options[0])
 
 col1, col2 = st.columns(2)
 
