@@ -63,7 +63,7 @@ if choose == "Contexto y usuarios":
     image = Image.open('almagro.jpg')
     st.image(image )
     
-if choosee == "Datos":
+if choose == "Datos":
     st.title("Visualización preliminar proyecto")
 
     df2=data[['Num_Operacion','Fecha Cotizacion','Nombre Proyecto','Nombre Etapa','Comuna Proyecto','Programa','Precio de Venta en Uf Cotizacion','Nombre_Propiedad','Modelo_Propiedad', 'Tipo Unidad',
