@@ -2,8 +2,8 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 with st.sidebar:
-    choose = option_menu("Proyecto Visualización", ["Contexto", "Datos", "Tareas", "Visualizaciones"],
-                         icons=['house', 'camera fill', 'kanban', 'book'],
+    choose = option_menu("Proyecto Visualización", ["Contexto y usuarios", "Datos", "Tareas", "Visualizaciones"],
+                         icons=['people-fill', 'table', 'list-task', 'file-bar-graph'],
                          menu_icon="app-indicator", default_index=0,
                          styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
