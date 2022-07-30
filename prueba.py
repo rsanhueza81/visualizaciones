@@ -23,8 +23,8 @@ data1 = data1[['N° Dormitorios','N° Baños','Comuna Proyecto','Precio de Venta
 data1.columns = ['n_dormitorios', 'n_baños', 'comuna_proy', 'precio','m2','estado_civil','comuna_cli', 'edad','programa','fecha_reserva','nombre_proyecto']
 
 data1['n_dormitorios'] = data1.n_dormitorios.astype(int).astype(str)
+data_1['n_banos']=data1.n_baños.astype(int)
 data1['n_baños'] = data1.n_baños.astype(int).astype(str)
-
 data1['reservado'] = 'No'
 data1.loc[data1.fecha_reserva.notna(), 'reservado'] = 'Sí'
 del data1['fecha_reserva']
@@ -66,18 +66,16 @@ Se destacan cuatro familias de variables:
 
 st.subheader('Prototipo de Idiom:')
 
-slider_banos = st.slider('Select a range of values',1, 4, (1, 4),step=1)
-min_banos=slider_banos[0]
-st.write('Values:', min_banos+1)
+
 
 #####################################################################
 ######################## VISUALIZACION 1 ############################
 #####################################################################
 
-data_v0=data1.sample(6000,random_state=3).copy()
-st.write(data_v0.n_baños.info())
+data_v1=data1.sample(6000,random_state=3).copy()
+slider_banos = st.slider('Número de baños',1, 4, (data_v1.n_banos.min(), data_v1.n_banos.max()),step=1)
 
-data_v1=data_v0[data_v0['n_baños']>='1'].copy()
+data_v1=data_v1[data_v1['n_banos']>=min_banos]
 
 selection = alt.selection_single(fields=['reservado'])
 
