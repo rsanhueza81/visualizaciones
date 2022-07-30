@@ -42,14 +42,17 @@ data1 = data1[data1.programa.isin(data1['programa'].value_counts()[:8].index)]
 ######################## VISUALIZACION 1 ############################
 #####################################################################
 
-data1=data1.sample(6000)
+data1=data1.sample(6000,random_state=3)
+data_v1=data1.copy()
+data_v1=data_v1[data_v1.n_baños>=slider_banos[0]]
+
 selection = alt.selection_single(fields=['reservado'])
 
 color = alt.condition(selection,
                       alt.Color('reservado:N', legend=None, scale=alt.Scale(scheme='paired')),
                       alt.value('lightgray'))
 
-stripplot =  alt.Chart(data1, width=40).mark_point().encode(
+stripplot =  alt.Chart(data_v1, width=40).mark_point().encode(
     x=alt.X(
         'jitter:Q',
         title=None,
@@ -87,7 +90,7 @@ stripplot = stripplot.properties(title=alt.TitleParams(
     width=50,
     height=300)
 
-legend = alt.Chart(data1).mark_bar().encode(
+legend = alt.Chart(data_v1).mark_bar().encode(
     y=alt.Y('count()', title='Cantidad cotizaciones'),
     x=alt.X('reservado:O', title='Reservado'),
     color=color
@@ -95,13 +98,13 @@ legend = alt.Chart(data1).mark_bar().encode(
     selection
 )
 
-programa_dropdown = alt.binding_select(options=[None] + list(data1.programa.unique()), labels = ['All'] + list(data1.programa.unique()), name="Programa")
+programa_dropdown = alt.binding_select(options=[None] + list(data_v1.programa.unique()), labels = ['All'] + list(data_v1.programa.unique()), name="Programa")
 programa_select = alt.selection_single(fields=['programa'], bind=programa_dropdown)
 
-dormitorio_slider = alt.binding_select(options=[None] + list(sorted(data1.n_dormitorios.unique())), labels = ['All'] + list(sorted(data1.n_dormitorios.unique())), name="Dormitorios")
+dormitorio_slider = alt.binding_select(options=[None] + list(sorted(data_v1.n_dormitorios.unique())), labels = ['All'] + list(sorted(data_v1.n_dormitorios.unique())), name="Dormitorios")
 dormitorio_select = alt.selection_single(fields=['n_dormitorios'], bind=dormitorio_slider)
 
-baño_slider = alt.binding_select(options=[None] + list(sorted(data1.n_baños.unique())), labels = ['All'] + list(sorted(data1.n_baños.unique())), name="Baños")
+baño_slider = alt.binding_select(options=[None] + list(sorted(data_v1.n_baños.unique())), labels = ['All'] + list(sorted(data_v1.n_baños.unique())), name="Baños")
 baño_select = alt.selection_single(fields=['n_baños'], bind=baño_slider)
 
 
@@ -118,8 +121,6 @@ stripplot = stripplot.add_selection(
 ).transform_filter(
     programa_select
 )
-
-
 legend = legend.add_selection(
     baño_select
 ).transform_filter(
