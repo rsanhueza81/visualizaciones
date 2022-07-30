@@ -75,6 +75,7 @@ st.subheader('Prototipo de Idiom:')
 
 data_v1=data1.sample(6000,random_state=3).copy()
 
+programas=list(data1.programa.unique())
 options = st.multiselect('Selecciona el tipo de departamento:', programas ,programas)
 st.write('You selected:', options[0])
 
@@ -86,13 +87,10 @@ with col2:
        slider_dormitorios = st.slider('Número de dorm',1, 5, (1,5),step=1)
 #with col3:
 #       slider_com = st.slider('Número de com',1, 4, (1,4),step=1)
-programas=list(data1.programa.unique())
-
-
 
 data_v1=data_v1[ (data_v1['n_banos']>=slider_banos[0]) & (data_v1['n_banos']<=slider_banos[1])]
 data_v1=data_v1[(data_v1['n_dorm']>=slider_dormitorios[0]) & (data_v1['n_dorm']<=slider_dormitorios[1])]
-
+data_v1=data_v1[data_v1.programa.isin(options)]
 
 selection = alt.selection_single(fields=['reservado'])
 
