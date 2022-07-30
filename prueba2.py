@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+from PIL import Image
 
 with st.sidebar:
     choose = option_menu("Proyecto Visualización", ["Contexto y usuarios", "Datos", "Tareas", "Visualizaciones"],
@@ -16,8 +17,12 @@ with st.sidebar:
 if choose == "Contexto y usuarios":
     
     st.title("Contexto y usuarios")
-    st.write("En encuentro  de ejecutivos del área comercial de inmobiliaria líder en Chile desean analizar estrategia de precios a establecer en los  próximos meses")
-    st.write("El objetivo que guía el encuento es poder establecer relación entre precios de departamentos medido en UF/m2 y los mercados donde se establecen los proyectos. Asimismo es importante establecer tendencias en cuento a la demanda , medido en cotizaciones de productos, y la forma en que esta demanda se concreta en operaciones de venta")
+    st.write("En encuentro  de ejecutivos del área comercial de inmobiliaria líder en Chile desean analizar estrategia de precios a establecer en los  próximos meses.")
+    st.write("El objetivo que guía el encuento es poder establecer relación entre precios de departamentos medido en UF/m2 y los mercados donde se establecen los proyectos. Asimismo es importante establecer tendencias en cuento a la demanda , medido en cotizaciones de productos, y la forma en que esta demanda se concreta en operaciones de venta.")
+    
+    
+    image = Image.open('almagro.jpg')
+    st.image(image )
     
    
     
