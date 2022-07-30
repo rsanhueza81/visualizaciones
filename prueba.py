@@ -38,6 +38,37 @@ data1.loc[data1.programa.isin(['TRADICIONAL KA']), 'programa'] = 'Tradicional KA
 data1.loc[data1.programa.isin(['PENTHOUSE 2 PISOS','PENTHOUSE  2 PISOS','Penthouse 2']), 'programa'] = 'Penthouse 2 pisos'
 data1.loc[data1.programa.isin(['Palomita']), 'programa'] = 'Paloma'
 data1 = data1[data1.programa.isin(data1['programa'].value_counts()[:8].index)]
+
+################################################################################
+############################## HTML ############################################
+################################################################################
+st.title("Visualización preliminar proyecto")
+
+df2=data[['Num_Operacion','Fecha Cotizacion','Nombre Proyecto','Nombre Etapa','Comuna Proyecto','Programa','Precio de Venta en Uf Cotizacion','Nombre_Propiedad','Modelo_Propiedad', 'Tipo Unidad',
+       'Metros Cuadrados','N° Dormitorios','N° Baños','Fecha Reserva','Precio de Venta en UF Reserva','ID Cliente','Nombre Cliente','Comuna Cliente','Estado Civil','Edad','Profesion','TipoMedio']].copy()
+
+df2.columns=['Id_cotizacion','Fecha_cotizacion','Nombre_proyecto','Nombre_etapa','Comuna_proyecto'
+            ,'Programa_proyecto','Precio_cotizacion','Nombre_propiedad','Modelo_propiedad','Tipo_unidad','M2','N_dormitorios','N_banos',
+            'Fecha_reserva','Precio_reserva','RUT_cliente','Nombre_cliente','Comuna_cliente','Estado_civil','Edad','Profesion','Origen_cotizacion']
+
+m = df2.select_dtypes(np.number)
+df2[m.columns]= m.round().astype('Int64')
+
+st.subheader('Muestra y descripción de la data')
+st.write('**Muestra de la data:**')
+st.dataframe(df2.iloc[0:5])
+st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos entre 2020 y 2021 en una importante empresa imobiliaria nacional. 
+Se destacan cuatro familias de variables:
+- **Datos relacionados con la cotización:** ID único, fecha cotización, precio mostrado en cotización, fecha reserva (si corresponde) , precio prometido en la reserva, canal de origen.
+- **Datos relacionados con el proyecto:** Nombre, comuna, programa. 
+- **Datos relacionados con el departamento:** Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
+- **Datos relacionados con el cliente:** Rut, Nombre, comuna de residencia, estado civil, edad, profesión """)
+
+st.subheader('Prototipo de Idiom:')
+
+slider_banos = st.slider('Select a range of values',1, 4, (1, 4),step=1)
+st.write('Values:', slider_banos[0])
+
 #####################################################################
 ######################## VISUALIZACION 1 ############################
 #####################################################################
@@ -134,35 +165,5 @@ legend = legend.add_selection(
 ).transform_filter(
     programa_select
 )
-
-################################################################################
-############################## HTML ############################################
-################################################################################
-st.title("Visualización preliminar proyecto")
-
-df2=data[['Num_Operacion','Fecha Cotizacion','Nombre Proyecto','Nombre Etapa','Comuna Proyecto','Programa','Precio de Venta en Uf Cotizacion','Nombre_Propiedad','Modelo_Propiedad', 'Tipo Unidad',
-       'Metros Cuadrados','N° Dormitorios','N° Baños','Fecha Reserva','Precio de Venta en UF Reserva','ID Cliente','Nombre Cliente','Comuna Cliente','Estado Civil','Edad','Profesion','TipoMedio']].copy()
-
-df2.columns=['Id_cotizacion','Fecha_cotizacion','Nombre_proyecto','Nombre_etapa','Comuna_proyecto'
-            ,'Programa_proyecto','Precio_cotizacion','Nombre_propiedad','Modelo_propiedad','Tipo_unidad','M2','N_dormitorios','N_banos',
-            'Fecha_reserva','Precio_reserva','RUT_cliente','Nombre_cliente','Comuna_cliente','Estado_civil','Edad','Profesion','Origen_cotizacion']
-
-m = df2.select_dtypes(np.number)
-df2[m.columns]= m.round().astype('Int64')
-
-st.subheader('Muestra y descripción de la data')
-st.write('**Muestra de la data:**')
-st.dataframe(df2.iloc[0:5])
-st.write("""Los datos a trabajar corresponden a cotizaciones de departamentos entre 2020 y 2021 en una importante empresa imobiliaria nacional. 
-Se destacan cuatro familias de variables:
-- **Datos relacionados con la cotización:** ID único, fecha cotización, precio mostrado en cotización, fecha reserva (si corresponde) , precio prometido en la reserva, canal de origen.
-- **Datos relacionados con el proyecto:** Nombre, comuna, programa. 
-- **Datos relacionados con el departamento:** Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
-- **Datos relacionados con el cliente:** Rut, Nombre, comuna de residencia, estado civil, edad, profesión """)
-
-st.subheader('Prototipo de Idiom:')
-
-slider_banos = st.slider(     'Select a range of values',1, 4, (1, 4),step=1)
-st.write('Values:', slider_banos[0])
 
 stripplot | legend
