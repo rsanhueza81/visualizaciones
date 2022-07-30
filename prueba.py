@@ -161,7 +161,7 @@ Se destacan cuatro familias de variables:
 
 st.subheader('Prototipo de Idiom:')
 
-values = st.slider(     'Select a range of values',data1.n_baños.min(), data1.n_baños.max(), (data1.n_baños.min(), data1.n_baños.max()),step=1)
-st.write('Values:', values)
+#values = st.slider(     'Select a range of values',data1.n_baños.min(), data1.n_baños.max(), (data1.n_baños.min(), data1.n_baños.max()),step=1)
+st.write('Values:', data1.n_baños.min())
 
 stripplot | legend
