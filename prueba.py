@@ -75,6 +75,9 @@ st.subheader('Prototipo de Idiom:')
 
 data_v1=data1.sample(6000,random_state=3).copy()
 
+options = st.multiselect('Selecciona el tipo de departamento:', programas ,programas)
+st.write('You selected:', options[0])
+
 col1, col2 = st.columns(2)
 
 with col1:
@@ -85,8 +88,7 @@ with col2:
 #       slider_com = st.slider('Número de com',1, 4, (1,4),step=1)
 programas=list(data1.programa.unique())
 
-options = st.multiselect('What are your favorite colors', programas ,programas)
-st.write('You selected:', options[0])
+
 
 data_v1=data_v1[ (data_v1['n_banos']>=slider_banos[0]) & (data_v1['n_banos']<=slider_banos[1])]
 data_v1=data_v1[(data_v1['n_dorm']>=slider_dormitorios[0]) & (data_v1['n_dorm']<=slider_dormitorios[1])]
