@@ -81,10 +81,10 @@ if choose == "Datos":
     
     st.write("Se destacan cuatro familias de variables:")
     
-    st.write("""-**Datos relacionados con la cotización:** ID único, fecha cotización, precio mostrado en cotización, fecha reserva (si corresponde) , precio prometido en la reserva, canal de origen.
-    -**Datos relacionados con el proyecto:** Nombre, comuna, programa. 
-    -**Datos relacionados con el departamento:** Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
-    -**Datos relacionados con el cliente:** Rut, Nombre, comuna de residencia, estado civil, edad, profesión """)
+    st.write("-Datos relacionados con la cotización:** ID único, fecha cotización, precio mostrado en cotización, fecha reserva (si corresponde) , precio prometido en la reserva, canal de origen.")
+    st.write("-Datos relacionados con el proyecto: Nombre, comuna, programa.")
+    st.write("-Datos relacionados con el departamento: Nombre, modelo, tipo, M2, número de dormitorios, números de baños.")
+    st.write("-Datos relacionados con el cliente: comuna de residencia, estado civil, edad, profesión.")
 
     
    
