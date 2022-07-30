@@ -123,6 +123,14 @@ stripplot =  alt.Chart(data_v1, width=40).mark_point().encode(
 stripplot = stripplot.properties(width=50,
     height=300)
 
+legend = alt.Chart(data_v1).mark_bar().encode(
+    y=alt.Y('count()', title='Cantidad cotizaciones'),
+    x=alt.X('reservado:O', title='Reservado'),
+    color=color
+).add_selection(
+    selection
+)
+
 ########### ALTAIR CODE ################
 
 if len(tipos_dpto)==0:
