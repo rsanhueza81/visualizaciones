@@ -87,10 +87,11 @@ data_v1=data_v1[ (data_v1['n_banos']>=slider_banos[0]) & (data_v1['n_banos']<=sl
 data_v1=data_v1[(data_v1['n_dorm']>=slider_dormitorios[0]) & (data_v1['n_dorm']<=slider_dormitorios[1])]
 data_v1=data_v1[data_v1.programa.isin(tipos_dpto)]
 
+########### ALTAIR CODE ################
 selection = alt.selection_single(fields=['reservado'])
 
 color = alt.condition(selection,
-                      alt.Color('reservado:N', legend=None, scale=alt.Scale(scheme='paired')),
+                      alt.Color('reservado:N', legend=None, scale=alt.Scale(range=['#AECDE1','#EC5A53'])),
                       alt.value('lightgray'))
 
 stripplot =  alt.Chart(data_v1, width=40).mark_point().encode(
@@ -122,13 +123,7 @@ stripplot =  alt.Chart(data_v1, width=40).mark_point().encode(
 stripplot = stripplot.properties(width=50,
     height=300)
 
-legend = alt.Chart(data_v1).mark_bar().encode(
-    y=alt.Y('count()', title='Cantidad cotizaciones'),
-    x=alt.X('reservado:O', title='Reservado'),
-    color=color
-).add_selection(
-    selection
-)
+########### ALTAIR CODE ################
 
 if len(tipos_dpto)==0:
        st.subheader('No hay cotizaciones para los filtros seleccionados')
