@@ -65,7 +65,7 @@ Se destacan cuatro familias de variables:
 - **Datos relacionados con el departamento:** Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
 - **Datos relacionados con el cliente:** Rut, Nombre, comuna de residencia, estado civil, edad, profesión """)
 
-st.subheader('UF por m2 aperturado por comuna del proyecto')
+st.subheader('Precios de cotización y venta por comuna')
 
 #####################################################################
 ######################## VISUALIZACION 1 ############################
@@ -101,7 +101,7 @@ stripplot =  alt.Chart(data_v1, width=40).mark_point().encode(
         axis=alt.Axis(values=[0], ticks=True, grid=False, labels=False),
         scale=alt.Scale(),
     ),
-    y=alt.Y('uf_m2:Q', title='UF por m2'),
+    y=alt.Y('uf_m2:Q', title='UF por m2 sobre el precio'),
     color=color,
     tooltip = 'nombre_proyecto',
     column=alt.Column(
