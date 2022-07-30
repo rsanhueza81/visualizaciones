@@ -144,41 +144,41 @@ legend = alt.Chart(data_v1).mark_bar().encode(
     selection
 )
 
-programa_dropdown = alt.binding_select(options=[None] + list(data_v1.programa.unique()), labels = ['All'] + list(data_v1.programa.unique()), name="Programa")
-programa_select = alt.selection_single(fields=['programa'], bind=programa_dropdown)
+#programa_dropdown = alt.binding_select(options=[None] + list(data_v1.programa.unique()), labels = ['All'] + list(data_v1.programa.unique()), name="Programa")
+#programa_select = alt.selection_single(fields=['programa'], bind=programa_dropdown)
 
-dormitorio_slider = alt.binding_select(options=[None] + list(sorted(data_v1.n_dormitorios.unique())), labels = ['All'] + list(sorted(data_v1.n_dormitorios.unique())), name="Dormitorios")
-dormitorio_select = alt.selection_single(fields=['n_dormitorios'], bind=dormitorio_slider)
+#dormitorio_slider = alt.binding_select(options=[None] + list(sorted(data_v1.n_dormitorios.unique())), labels = ['All'] + list(sorted(data_v1.n_dormitorios.unique())), name="Dormitorios")
+#dormitorio_select = alt.selection_single(fields=['n_dormitorios'], bind=dormitorio_slider)
 
-baño_slider = alt.binding_select(options=[None] + list(sorted(data_v1.n_baños.unique())), labels = ['All'] + list(sorted(data_v1.n_baños.unique())), name="Baños")
-baño_select = alt.selection_single(fields=['n_baños'], bind=baño_slider)
+#baño_slider = alt.binding_select(options=[None] + list(sorted(data_v1.n_baños.unique())), labels = ['All'] + list(sorted(data_v1.n_baños.unique())), name="Baños")
+#baño_select = alt.selection_single(fields=['n_baños'], bind=baño_slider)
 
 
-stripplot = stripplot.add_selection(
-    baño_select
-).transform_filter(
-    baño_select
-).add_selection(
-    dormitorio_select
-).transform_filter(
-    dormitorio_select
-).add_selection(
-    programa_select
-).transform_filter(
-    programa_select
-)
-legend = legend.add_selection(
-    baño_select
-).transform_filter(
-    baño_select
-).add_selection(
-    dormitorio_select
-).transform_filter(
-    dormitorio_select
-).add_selection(
-    programa_select
-).transform_filter(
-    programa_select
-)
+#stripplot = stripplot.add_selection(
+#    baño_select
+#).transform_filter(
+#    baño_select
+#).add_selection(
+#    dormitorio_select
+#).transform_filter(
+#    dormitorio_select
+#).add_selection(
+#    programa_select
+#).transform_filter(
+#    programa_select
+#)
+#legend = legend.add_selection(
+#    baño_select
+#).transform_filter(
+#    baño_select
+#).add_selection(
+#    dormitorio_select
+#).transform_filter(
+#    dormitorio_select
+#).add_selection(
+#    programa_select
+#).transform_filter(
+#    programa_select
+#)
 
 stripplot | legend
