@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 from PIL import Image
 
-mport altair as alt
+import altair as alt
 import pandas as pd
 import numpy as np
 from altair.expr import datum
