@@ -74,9 +74,10 @@ st.write('Values:', min_banos+1)
 ######################## VISUALIZACION 1 ############################
 #####################################################################
 
-data1=data1.sample(6000,random_state=3)
-data_v1=data1.copy()
-data_v1=data_v1[data_v1.n_baños>=1]
+data_v1=data1.sample(6000,random_state=3).copy()
+st.write('Values:', data_v1.n_baños.max())
+
+data_v1=data_v1[data_v1['n_baños']>=1]
 
 selection = alt.selection_single(fields=['reservado'])
 
