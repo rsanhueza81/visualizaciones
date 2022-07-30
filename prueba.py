@@ -75,7 +75,7 @@ st.subheader('Prototipo de Idiom:')
 data_v1=data1.sample(6000,random_state=3).copy()
 slider_banos = st.slider('Número de baños',1, 4, (1,4),step=1)
 
-data_v1=data_v1[data_v1['n_banos']>=min_banos]
+data_v1=data_v1[data_v1['n_banos']>=slider_banos[0]]
 
 selection = alt.selection_single(fields=['reservado'])
 
