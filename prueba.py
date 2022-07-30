@@ -65,9 +65,7 @@ Se destacan cuatro familias de variables:
 - **Datos relacionados con el departamento:** Nombre, modelo, tipo, M2, número de dormitorios, números de baños.
 - **Datos relacionados con el cliente:** Rut, Nombre, comuna de residencia, estado civil, edad, profesión """)
 
-st.subheader('Prototipo de Idiom:')
-
-
+st.subheader('UF por m2 aperturado por comuna del proyecto')
 
 #####################################################################
 ######################## VISUALIZACION 1 ############################
@@ -84,8 +82,6 @@ with col1:
        slider_banos = st.slider('Número de baños',1, 4, (1,4),step=1)
 with col2:
        slider_dormitorios = st.slider('Número de dorm',1, 5, (1,5),step=1)
-#with col3:
-#       slider_com = st.slider('Número de com',1, 4, (1,4),step=1)
 
 data_v1=data_v1[ (data_v1['n_banos']>=slider_banos[0]) & (data_v1['n_banos']<=slider_banos[1])]
 data_v1=data_v1[(data_v1['n_dorm']>=slider_dormitorios[0]) & (data_v1['n_dorm']<=slider_dormitorios[1])]
@@ -123,16 +119,7 @@ stripplot =  alt.Chart(data_v1, width=40).mark_point().encode(
     jitter='sqrt(-2*log(random()))*cos(2*PI*random())'
 )
 
-stripplot = stripplot.properties(title=alt.TitleParams(
-    text="UF por m2 aperturado por comuna del proyecto",
-    subtitle=["Inmobiliaria Almagro",""],
-    fontSize=20,
-    color='#3169A4',
-    subtitleFontSize=16,
-    subtitleColor="#525252",
-    anchor="start"
-        ),
-    width=50,
+stripplot = stripplot.properties(width=50,
     height=300)
 
 legend = alt.Chart(data_v1).mark_bar().encode(
@@ -143,42 +130,6 @@ legend = alt.Chart(data_v1).mark_bar().encode(
     selection
 )
 
-#programa_dropdown = alt.binding_select(options=[None] + list(data_v1.programa.unique()), labels = ['All'] + list(data_v1.programa.unique()), name="Programa")
-#programa_select = alt.selection_single(fields=['programa'], bind=programa_dropdown)
-
-#dormitorio_slider = alt.binding_select(options=[None] + list(sorted(data_v1.n_dormitorios.unique())), labels = ['All'] + list(sorted(data_v1.n_dormitorios.unique())), name="Dormitorios")
-#dormitorio_select = alt.selection_single(fields=['n_dormitorios'], bind=dormitorio_slider)
-
-#baño_slider = alt.binding_select(options=[None] + list(sorted(data_v1.n_baños.unique())), labels = ['All'] + list(sorted(data_v1.n_baños.unique())), name="Baños")
-#baño_select = alt.selection_single(fields=['n_baños'], bind=baño_slider)
-
-
-#stripplot = stripplot.add_selection(
-#    baño_select
-#).transform_filter(
-#    baño_select
-#).add_selection(
-#    dormitorio_select
-#).transform_filter(
-#    dormitorio_select
-#).add_selection(
-#    programa_select
-#).transform_filter(
-#    programa_select
-#)
-#legend = legend.add_selection(
-#    baño_select
-#).transform_filter(
-#    baño_select
-#).add_selection(
-#    dormitorio_select
-#).transform_filter(
-#    dormitorio_select
-#).add_selection(
-#    programa_select
-#).transform_filter(
-#    programa_select
-#)
 if len(tipos_dpto)==0:
        st.subheader('No hay cotizaciones para los filtros seleccionados')
 else:
