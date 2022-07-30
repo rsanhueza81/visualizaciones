@@ -16,18 +16,9 @@ with st.sidebar:
 if choose == "Contexto y usuarios":
     
     st.title("Contexto y usuarios")
-    st.text("en un encuentro anual")
-    st.set_page_config(layout="wide")
-
-    st.markdown("""
-    <style>
-    .big-font {
-        font-size:300px !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-    st.markdown('<p class="big-font">Hello World !!</p>', unsafe_allow_html=True)
+    st.text("En encuentro  de ejecutivos del área comercial de inmobiliaria líder en Chile desean analizar estrategia de precios a establecer en los  próximos meses")
+    st.text("El objetivo que guía el encuento es poder establecer relación entre precios de departamentos medido en UF/m2 y los mercados donde se establecen los proyectos. Asimismo es importante establecer tendencias en cuento a la demanda , medido en cotizaciones de productos, y la forma en que esta demanda se concreta en operaciones de venta")
+    
    
     
     
