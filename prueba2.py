@@ -22,6 +22,8 @@ data1 = data1[data1['Tipo Unidad'] =='Departamento']
 data1 = data1[['N° Dormitorios','N° Baños','Comuna Proyecto','Precio de Venta en Uf Cotizacion','Metros Cuadrados','Estado Civil','Comuna Cliente', 'Edad', 'Programa','Fecha Reserva','Nombre Proyecto']]
 data1.columns = ['n_dormitorios', 'n_baños', 'comuna_proy', 'precio','m2','estado_civil','comuna_cli', 'edad','programa','fecha_reserva','nombre_proyecto']
 
+data1['n_dorm']=data1.n_dormitorios.astype(int)
+data1['n_banos']=data1.n_baños.astype(int)
 data1['n_dormitorios'] = data1.n_dormitorios.astype(int).astype(str)
 data1['n_baños'] = data1.n_baños.astype(int).astype(str)
 
@@ -97,6 +99,79 @@ if choose == "Tareas":
     imagedos = Image.open('almagro2.jpg')
     st.image(imagedos)
     
+if choose == "Visualizaciones":
+######################################################################
+################ PRIMERA VIZUALIZACION ###############################
+######################################################################  
+    data_v1=data1.sample(6000,random_state=3).copy()
+
+    programas=list(data1.programa.unique())
+    tipos_dpto = st.multiselect('Selecciona el tipo de departamento:', programas ,programas)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+           slider_banos = st.slider('Número de baños',1, 4, (1,4),step=1)
+    with col2:
+           slider_dormitorios = st.slider('Número de dorm',1, 5, (1,5),step=1)
+
+    data_v1=data_v1[ (data_v1['n_banos']>=slider_banos[0]) & (data_v1['n_banos']<=slider_banos[1])]
+    data_v1=data_v1[(data_v1['n_dorm']>=slider_dormitorios[0]) & (data_v1['n_dorm']<=slider_dormitorios[1])]
+    data_v1=data_v1[data_v1.programa.isin(tipos_dpto)]
+
+    ########### ALTAIR CODE ################
+    selection = alt.selection_single(fields=['reservado'])
+
+    color = alt.condition(selection,
+                          alt.Color('reservado:N', legend=None, scale=alt.Scale(range=['#AECDE1','#EC5A53'])),
+                          alt.value('lightgray'))
+
+    stripplot =  alt.Chart(data_v1, width=40).mark_point().encode(
+        x=alt.X(
+            'jitter:Q',
+            title=None,
+            axis=alt.Axis(values=[0], ticks=True, grid=False, labels=False),
+            scale=alt.Scale(),
+        ),
+        y=alt.Y('uf_m2:Q', title='UF por m2'),
+        color=color,
+        tooltip = 'nombre_proyecto',
+        column=alt.Column(
+            'comuna_proy:N',
+            header=alt.Header(
+                labelAngle=-90,
+                title = 'Comuna proyecto',
+                titleOrient='bottom',
+                labelOrient='bottom',
+                labelAlign='left',
+                labelPadding=300-3
+            ),
+        ),
+    ).transform_calculate(
+        # Generate Gaussian jitter with a Box-Muller transform
+        jitter='sqrt(-2*log(random()))*cos(2*PI*random())'
+    )
+
+    stripplot = stripplot.properties(width=50,
+        height=300)
+
+    legend = alt.Chart(data_v1).mark_bar().encode(
+        y=alt.Y('count()', title='Cantidad cotizaciones'),
+        x=alt.X('reservado:O', title='Reservado'),
+        color=color
+    ).add_selection(
+        selection
+    )
+
+    ########### ALTAIR CODE ################
+
+    if len(tipos_dpto)==0:
+           st.subheader('No hay cotizaciones para los filtros seleccionados')
+    else:
+           stripplot | legend
+######################################################################
+################ PRIMERA VIZUALIZACION ###############################
+######################################################################  
     
  
 
