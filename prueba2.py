@@ -102,7 +102,8 @@ if choose == "Tareas":
 if choose == "Visualizaciones":
 ######################################################################
 ################ PRIMERA VIZUALIZACION ###############################
-######################################################################  
+######################################################################
+    st.subheader('UF por m2 aperturado por comuna del proyecto')
     data_v1=data1.sample(6000,random_state=3).copy()
 
     programas=list(data1.programa.unique())
