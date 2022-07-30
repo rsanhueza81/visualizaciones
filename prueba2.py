@@ -13,7 +13,7 @@ with st.sidebar:
     }
     )
 
-Acá tengo que explicar":
+if choose == "Contexto y usuarios":
     
     st.title("Acá tengo que explicar")
     
