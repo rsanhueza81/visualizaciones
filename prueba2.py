@@ -85,6 +85,20 @@ if choose == "Datos":
     st.write("-Datos relacionados con el proyecto: Nombre, comuna, programa.")
     st.write("-Datos relacionados con el departamento: Nombre, modelo, tipo, M2, número de dormitorios, números de baños.")
     st.write("-Datos relacionados con el cliente: comuna de residencia, estado civil, edad, profesión.")
+    
+if choose == "Tareas":
+    
+    st.title("Tareas de Visualización")
+    st.write("Se han identificado las dos siguientes tareas de visualización las cuales serán aboradadadas en sus respectivos idioms")
+    st.write("Presentar la relación existente entre el precio de los departamentos comercializados por la Inmobiliaria y la localización de sus repsectivos proyectos (comunas).")
+    st.write("Presentar la evolución en la demanda de productos  de la inmobiliaria y su tasa de concreción en negocios (promesas de compra venta)."
+    
+    
+    image = Image.open('almagro.jpg')
+    st.image(image )
+    
+    
+ 
 
     
    
