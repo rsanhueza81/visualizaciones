@@ -103,6 +103,7 @@ if choose == "Visualizaciones":
 ######################################################################
 ################ PRIMERA VIZUALIZACION ###############################
 ######################################################################
+    st.title("Visualizaciones")
     st.subheader('UF por m2 aperturado por comuna del proyecto')
     data_v1=data1.sample(6000,random_state=3).copy()
 
