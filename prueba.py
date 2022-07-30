@@ -22,6 +22,7 @@ data1 = data1[data1['Tipo Unidad'] =='Departamento']
 data1 = data1[['N° Dormitorios','N° Baños','Comuna Proyecto','Precio de Venta en Uf Cotizacion','Metros Cuadrados','Estado Civil','Comuna Cliente', 'Edad', 'Programa','Fecha Reserva','Nombre Proyecto']]
 data1.columns = ['n_dormitorios', 'n_baños', 'comuna_proy', 'precio','m2','estado_civil','comuna_cli', 'edad','programa','fecha_reserva','nombre_proyecto']
 
+data1['n_dorm']=data1.n_dormitorios.astype(int)
 data1['n_dormitorios'] = data1.n_dormitorios.astype(int).astype(str)
 data1['n_banos']=data1.n_baños.astype(int)
 data1['n_baños'] = data1.n_baños.astype(int).astype(str)
@@ -74,16 +75,18 @@ st.subheader('Prototipo de Idiom:')
 
 data_v1=data1.sample(6000,random_state=3).copy()
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
        slider_banos = st.slider('Número de baños',1, 4, (1,4),step=1)
 with col2:
-       slider_dorm = st.slider('Número de dorm',1, 4, (1,4),step=1)
-with col3:
-       slider_com = st.slider('Número de com',1, 4, (1,4),step=1)
+       slider_dormitorios = st.slider('Número de dorm',1, 5, (1,5),step=1)
+#with col3:
+#       slider_com = st.slider('Número de com',1, 4, (1,4),step=1)
 
-data_v1=data_v1[data_v1['n_banos']>=slider_banos[0]]
+data_v1=data_v1[ (data_v1['n_banos']>=slider_banos[0]) & (data_v1['n_banos']<=slider_banos[1])]
+data_v1=data_v1[(data_v1['n_dorm']>=slider_dormitorios[0]) & (data_v1['n_dorm']<=slider_dormitorios[1])]
+
 
 selection = alt.selection_single(fields=['reservado'])
 
