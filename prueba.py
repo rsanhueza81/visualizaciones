@@ -151,20 +151,28 @@ comunas=list(data1.comuna_proy.unique())
 comunas2=['VER TODAS']+comunas
 proyectos=list(data1.nombre_proyecto.unique())
 proyectos2=['VER TODOS']+proyectos
-col3, col4 = st.columns(2)
+dict_proy = {}
+for comuna in data1.comuna_proy.unique():
+       dict_proy[comuna] = list(data1[data1.comuna_proy==comuna].nombre_proyecto.unique())
+#col3, col4 = st.columns(2)
 
-with col3:
-       selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
+#with col3:
+selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
 if selector_comuna=='VER TODOS':
         filtro_comuna=comunas
         bool_proyecto=True
+        proyecto_com=proyectos2
        
 if selector_comuna!='VER TODOS':
         bool_proyecto=False
         filtro_comuna=selector_comuna
+        proyecto_com=dict_proy[selector_comuna]
+
        
-with col4:
-       selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyectos2,disabled=bool_proyecto)
+#with col4:
+
+
+selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyecto_com,disabled=bool_proyecto)
 
 st.write('You selected:', filtro_comuna)  
 
