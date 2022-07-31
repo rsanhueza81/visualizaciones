@@ -134,7 +134,7 @@ legend = alt.Chart(data_v1).mark_bar().encode(
     selection
 )
 
-stripplot = stripplot.properties(width=90,
+legend = legend.properties(width=90,
     height=300)
 
 ########### ALTAIR CODE ################
