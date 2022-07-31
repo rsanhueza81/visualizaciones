@@ -155,16 +155,17 @@ col3, col4 = st.columns(2)
 
 with col3:
        selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
+       if selector_comuna=='VER TODOS':
+              filtro_comuna=comunas
+              bool_proyecto=True
+       if selector_comuna!='VER TODOS':
+              bool_proyecto=False
+       
 with col4:
        selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyectos2,disabled=bool_proyecto)
 
-if selector_comuna=='VER TODOS':
-       filtro_comuna=comunas
-       bool_proyecto=True
-       
-if selector_comuna!='VER TODOS':
-       bool_proyecto=False
-       
+      
+      
 if selector_proyecto=='VER TODOS':
        filtro_proyectos=proyectos
 
