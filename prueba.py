@@ -157,6 +157,7 @@ for comuna in data1.comuna_proy.unique():
 col3, col4 = st.columns([1,3])
 
 with col3:
+       magnitud = st.radio("¿Qué quiere medir?",['Cantidad', 'Monto (UF)'])
        selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
 
        if selector_comuna=='Ver todo':
@@ -184,7 +185,7 @@ with col3:
            filtro_proyectos=[selector_proyecto]
 
 
-       magnitud = st.radio("¿Qué quiere medir?",['cantidad', 'monto'])
+       
 
 ######################## ALTAIR ###################################
 data_v2 = data1.copy()
@@ -203,10 +204,10 @@ data_v2['tasa_cantidad'] = data_v2.reservas/data_v2.cantidad
 data_v2['tasa_monto'] = data_v2.monto/data_v2.monto_total
 data_v2['fecha']=data_v2.fecha.astype(str)
 
-if magnitud=='cantidad':
+if magnitud=='Cantidad':
     title_y1 = 'Cantidad Cotizaciones'
     title_y2 = 'Tasa Cotizaciones Concretadas'
-elif magnitud=='monto':
+elif magnitud=='Monto (UF)':
     title_y1 = 'Monto Total (UF)'
     title_y2 = 'Tasa Monto Concretado'
 
@@ -239,5 +240,5 @@ with col4:
            y = 'independent'
        )
 
-       chart=chart.properties(width=800,height=400)
+       chart=chart.properties(width=600,height=400)
        chart
