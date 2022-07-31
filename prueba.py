@@ -158,7 +158,8 @@ for comuna in data1.comuna_proy.unique():
 
 #with col3:
 selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
-if selector_comuna=='Ver todas':
+
+if selector_comuna=='Ver todo':
         filtro_comuna=comunas
         bool_proyecto=True
         proyecto_com=proyectos2
