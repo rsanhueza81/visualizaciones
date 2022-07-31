@@ -81,7 +81,7 @@ if choose == "Datos":
     st.title('Muestra y descripción de la data')
     st.write('**Muestra de la data:**')
     st.dataframe(df2.iloc[0:5])
-    st.write("Los datos a trabajar corresponden a cotizaciones de departamentos entre 2020 y 2021 en una importante empresa imobiliaria nacional.")
+    st.write("Los datos a trabajar corresponden a cotizaciones de departamentos entre 2019 y 2022 en una importante empresa imobiliaria nacional.")
     
     st.write("Se destacan cuatro familias de variables:")
     
