@@ -183,12 +183,13 @@ elif selector_proyecto=='Comuna completa':
 else:# selector_proyecto!='Ver todo':
     filtro_proyectos=[selector_proyecto]
 
-st.write('You selected:', filtro_proyectos)
 
+magnitud = st.radio("¿Qué quiere medir?",'cantidad', 'monto')
+
+######################## ALTAIR ###################################
 data_v2 = data1.copy()
 data_v2['reservado2'] = 0
 
-magnitud='monto'
 # filtros william
 data_v2=data_v2[data_v2.comuna_proy.isin(filtro_comuna)]
 data_v2=data_v2[data_v2.nombre_proyecto.isin(filtro_proyectos)]
@@ -206,7 +207,7 @@ if magnitud=='cantidad':
     title_y1 = 'Cantidad Cotizaciones'
     title_y2 = 'Tasa Cotizaciones Concretadas'
 elif magnitud=='monto':
-    title_y1 = 'Monto Total'
+    title_y1 = 'Monto Total (UF)'
     title_y2 = 'Tasa Monto Concretado'
 
 
