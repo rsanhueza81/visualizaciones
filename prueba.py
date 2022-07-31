@@ -188,7 +188,7 @@ st.write('You selected:', filtro_proyectos)
 data_v2 = data1.copy()
 data_v2['reservado2'] = 0
 
-magnitud='cantidad'
+magnitud='monto'
 # filtros william
 data_v2=data_v2[data_v2.comuna_proy.isin(filtro_comuna)]
 data_v2=data_v2[data_v2.nombre_proyecto.isin(filtro_proyectos)]
@@ -203,7 +203,7 @@ data_v2['tasa_monto'] = data_v2.monto/data_v2.monto_total
 data_v2['fecha']=data_v2.fecha.astype(str)
 
 if magnitud=='cantidad':
-    title_y1 = 'Cantidad Cotizacionnes'
+    title_y1 = 'Cantidad Cotizaciones'
     title_y2 = 'Tasa Cotizaciones Concretadas'
 elif magnitud=='monto':
     title_y1 = 'Monto Total'
