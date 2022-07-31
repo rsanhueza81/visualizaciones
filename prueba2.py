@@ -104,7 +104,7 @@ if choose == "Visualizaciones":
 ################ PRIMERA VIZUALIZACION ###############################
 ######################################################################
     st.title("Visualizaciones")
-    st.subheader('Monto cotizacion por comuna y si es venta')
+    st.subheader('Monto cotizacion aperturado por comuna y estado de la reserva')
     data_v1=data1.sample(6000,random_state=3).copy()
 
     programas=list(data1.programa.unique())
@@ -135,7 +135,7 @@ if choose == "Visualizaciones":
             axis=alt.Axis(values=[0], ticks=True, grid=False, labels=False),
             scale=alt.Scale(),
         ),
-        y=alt.Y('uf_m2:Q', title='UF por m2 sobre el precio'),
+        y=alt.Y('uf_m2:Q', title='UF por m2 sobre el precio cotizado'),
         color=color,
         tooltip = 'nombre_proyecto',
         column=alt.Column(
@@ -159,7 +159,7 @@ if choose == "Visualizaciones":
 
     legend = alt.Chart(data_v1).mark_bar().encode(
         y=alt.Y('count()', title='Cantidad cotizaciones'),
-        x=alt.X('reservado:O', title='Reservado'),
+        x=alt.X('reservado:O', title='Reserva concretada'),
         color=color
     ).add_selection(
         selection
