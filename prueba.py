@@ -166,7 +166,7 @@ if selector_comuna=='Ver todo':
        
 if selector_comuna!='Ver todo':
         bool_proyecto=False
-        filtro_comuna=list(selector_comuna)
+        filtro_comuna=[selector_comuna]
         proyecto_com=dict_proy[selector_comuna]
 
        
@@ -178,7 +178,7 @@ if selector_proyecto=='Ver todo':
     filtro_proyectos=proyecto_com
 
 if selector_proyecto!='Ver todo':
-    filtro_proyectos=list(selector_proyecto)
+    filtro_proyectos=[selector_proyecto]
 
 st.write('You selected:', filtro_proyectos)
 
