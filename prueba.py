@@ -223,4 +223,5 @@ chart = alt.layer(bar, line).resolve_scale(
     y = 'independent'
 )
 
-chart.properties(width=600,height=300)
+chart=chart.properties(width=600,height=300)
+chart
