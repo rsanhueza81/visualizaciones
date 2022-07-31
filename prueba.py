@@ -161,14 +161,15 @@ if selector_comuna=='VER TODOS':
        
 if selector_comuna!='VER TODOS':
         bool_proyecto=False
+        filtro_comuna=selector_comuna
        
 with col4:
        selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyectos2,disabled=bool_proyecto)
 
-      
-      
+st.write('You selected:', filtro_comuna)  
+
 if selector_proyecto=='VER TODOS':
-       filtro_proyectos=proyectos
+    filtro_proyectos=proyectos
 
 
 data_v2 = data1.copy()
