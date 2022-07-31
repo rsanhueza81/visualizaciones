@@ -100,10 +100,124 @@ if choose == "Tareas":
     st.image(imagedos)
     
 if choose == "Visualizaciones":
+    
+    
+    
+    
+    
 ######################################################################
 ################ PRIMERA VIZUALIZACION ###############################
 ######################################################################
     st.title("Visualizaciones")
+          
+################### VIZUALIZACION 2 ######################################
+    st.subheader('Precios de cotización y venta por comuna')
+
+
+    comunas=list(data1.comuna_proy.unique())
+    comunas2=['Ver todo']+comunas
+    proyectos=list(data1.nombre_proyecto.unique())
+    proyectos2=['Ver todo']+proyectos
+    dict_proy = {}
+    for comuna in data1.comuna_proy.unique():
+           dict_proy[comuna] = list(data1[data1.comuna_proy==comuna].nombre_proyecto.unique())
+    col3, col4 = st.columns([1,3])
+
+    with col3:
+           magnitudes = st.radio("¿Qué quiere medir?",['Cantidad', 'Monto (UF)'])
+           if magnitudes=='Cantidad':
+                  magnitud='cantidad'
+           if magnitudes=='Monto (UF)':
+                  magnitud='monto'
+
+           selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
+
+           if selector_comuna=='Ver todo':
+                   filtro_comuna=comunas
+                   bool_proyecto=True
+                   proyecto_com=proyectos2
+
+           if selector_comuna!='Ver todo':
+                   bool_proyecto=False
+                   filtro_comuna=[selector_comuna]
+                   proyecto_com=['Comuna completa']+dict_proy[selector_comuna]
+
+
+
+
+           selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyecto_com,disabled=bool_proyecto)
+
+           if selector_proyecto=='Ver todo':
+               filtro_proyectos=proyecto_com
+
+           elif selector_proyecto=='Comuna completa':
+               filtro_proyectos=proyecto_com
+
+           else:# selector_proyecto!='Ver todo':
+               filtro_proyectos=[selector_proyecto]
+
+
+
+
+    ######################## ALTAIR ###################################
+    data_v2 = data1.copy()
+    data_v2['reservado2'] = 0
+
+    # filtros william
+    data_v2=data_v2[data_v2.comuna_proy.isin(filtro_comuna)]
+    data_v2=data_v2[data_v2.nombre_proyecto.isin(filtro_proyectos)]
+
+
+    data_v2.loc[data_v2.reservado=='Sí', 'reservado2']=1
+    data_v2['monto'] = (data_v2.precio * data_v2.reservado2).astype(int)
+    data_v2 = data_v2.groupby(['fecha','periodo']).agg({'reservado2':['count','sum'],'monto':['sum'],'precio':['sum']}).reset_index()
+    data_v2.columns = ['fecha','periodo','cantidad','reservas','monto','monto_total']
+    data_v2['tasa_cantidad'] = data_v2.reservas/data_v2.cantidad
+    data_v2['tasa_monto'] = data_v2.monto/data_v2.monto_total
+    data_v2['fecha']=data_v2.fecha.astype(str)
+
+    if magnitud=='cantidad':
+        title_y1 = 'Cantidad Cotizaciones'
+        title_y2 = 'Tasa Cotizaciones Concretadas'
+    elif magnitud=='monto':
+        title_y1 = 'Monto Total (UF)'
+        title_y2 = 'Tasa Monto Concretado'
+
+    with col4:
+           base = alt.Chart(data_v2).encode(alt.X('fecha:O', title=None))
+
+           bar = base.mark_bar(color='#AECDE1').encode(alt.Y(f'{magnitud}:Q',
+                                        axis=alt.Axis(title=title_y1, 
+                                                      titleColor='#98B2C5',
+                                                      titleFontSize=14)),
+                                        tooltip=[
+                                            alt.Tooltip('cantidad', title='Cantidad cotizaciones'),
+                                            alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa cot. concretadas'),
+                                            alt.Tooltip('monto', title='Monto total'),
+                                            alt.Tooltip('tasa_monto', format='.1%', title='Tasa monto concretado'),
+                                        ]).interactive()
+
+           line =  base.mark_line(point=alt.OverlayMarkDef(color="#EC5A53"),color='#EC5A53').encode(alt.Y(f'tasa_{magnitud}:Q',
+                                        axis=alt.Axis(title=title_y2, 
+                                                      titleColor='#EC5A53',
+                                                      titleFontSize=14,
+                                                      format='%')),
+                                        tooltip=[
+                                            alt.Tooltip('cantidad', title='Cantidad cotizaciones'),
+                                            alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa cotizaciones concretadas'),
+                                            alt.Tooltip('monto', title='Monto total'),
+                                            alt.Tooltip('tasa_monto', format='.1%', title='Tasa monto concretado'),
+                                        ]).interactive()
+           chart = alt.layer(bar, line).resolve_scale(
+               y = 'independent'
+           )
+
+           chart=chart.properties(width=600,height=400)
+           chart
+
+######################################################################
+################ PRIMERA VIZUALIZACION ###############################
+######################################################################  
     st.subheader("Precio de cotizaciones (UF/m2) aperturado por comuna y estado (reservado/no reservado)")
     data_v1=data1.sample(6000,random_state=3).copy()
 
@@ -171,10 +285,6 @@ if choose == "Visualizaciones":
            st.subheader('No hay cotizaciones para los filtros seleccionados')
     else:
            stripplot | legend
-######################################################################
-################ PRIMERA VIZUALIZACION ###############################
-######################################################################  
-    
  
 
     
