@@ -112,9 +112,10 @@ if choose == "Visualizaciones":
 ######################################################################
     st.title("Visualizaciones")
           
-################### VIZUALIZACION 2 ######################################
+################### VIZUALIZACION 1 ######################################
     st.subheader('Precios de cotización y venta por comuna')
 
+    ######################## CODIGO SELECTORES ###################################
 
     comunas=list(data1.comuna_proy.unique())
     comunas2=['Ver todo']+comunas
@@ -159,9 +160,7 @@ if choose == "Visualizaciones":
                filtro_proyectos=[selector_proyecto]
 
 
-
-
-    ######################## ALTAIR ###################################
+    ######################## CODIGO GRAFICOS ###################################
     data_v2 = data1.copy()
     data_v2['reservado2'] = 0
 
@@ -218,7 +217,7 @@ if choose == "Visualizaciones":
            chart
 
 ######################################################################
-################ PRIMERA VIZUALIZACION ###############################
+################ SEGUNDA VIZUALIZACION ###############################
 ######################################################################  
     st.subheader("Precio de cotizaciones (UF/m2) aperturado por comuna y estado (reservado/no reservado)")
     data_v1=data1.sample(6000,random_state=3).copy()
@@ -266,7 +265,7 @@ if choose == "Visualizaciones":
             ),
         ),
     ).transform_calculate(
-        # Generate Gaussian jitter with a Box-Muller transform
+
         jitter='sqrt(-2*log(random()))*cos(2*PI*random())'
     )
 
@@ -281,10 +280,9 @@ if choose == "Visualizaciones":
         selection
     )
 
-    ########### ALTAIR CODE ################
 
     if len(tipos_dpto)==0:
-           st.subheader('No hay cotizaciones para los filtros seleccionados')
+           st.write('No hay cotizaciones para los filtros seleccionados')
     else:
            stripplot | legend
  
