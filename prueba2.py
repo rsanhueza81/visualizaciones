@@ -104,7 +104,7 @@ if choose == "Visualizaciones":
 ################ PRIMERA VIZUALIZACION ###############################
 ######################################################################
     st.title("Visualizaciones")
-    st.subheader('Monto cotizacion aperturado por comuna y estado de la reserva')
+    st.subheader('Precio de cotizaciones (UF/m2) aperturado por comuna y estado (reservado/no reservado)")
     data_v1=data1.sample(6000,random_state=3).copy()
 
     programas=list(data1.programa.unique())
