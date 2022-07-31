@@ -150,14 +150,12 @@ st.subheader('Precios de cotización y venta por comuna')
 comunas=list(data1.comuna_proy.unique())
 proyectos=list(data1.nombre_proyecto.unique())
 
-
-nombre_proyecto
 col3, col4 = st.columns(2)
 
 with col1:
        selector_comuna = st.multiselect('Selecciona la(s) comunas a observar:', comunas ,comunas)
 with col2:
-       selector_proyecto = st.multiselect('Selecciona el(los) proyecto(s) a observar:', nombre_proyecto ,nombre_proyecto)
+       selector_proyecto = st.multiselect('Selecciona el(los) proyecto(s) a observar:', proyectos ,proyectos)
 
 
 data_v2 = data1.copy()
