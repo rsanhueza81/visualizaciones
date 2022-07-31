@@ -167,7 +167,7 @@ if selector_comuna=='Ver todo':
 if selector_comuna!='Ver todo':
         bool_proyecto=False
         filtro_comuna=[selector_comuna]
-        proyecto_com=dict_proy[selector_comuna]
+        proyecto_com=['Comuna completa']+dict_proy[selector_comuna]
 
        
 #with col4:
@@ -177,7 +177,10 @@ selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyecto_com
 if selector_proyecto=='Ver todo':
     filtro_proyectos=proyecto_com
 
-if selector_proyecto!='Ver todo':
+elif selector_proyecto=='Comuna completa':
+    filtro_proyectos=proyecto_com
+
+else:# selector_proyecto!='Ver todo':
     filtro_proyectos=[selector_proyecto]
 
 st.write('You selected:', filtro_proyectos)
