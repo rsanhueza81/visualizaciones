@@ -148,9 +148,9 @@ st.subheader('Precios de cotización y venta por comuna')
 
 
 comunas=list(data1.comuna_proy.unique())
-comunas2=['VER TODAS']+comunas
+comunas2=['Ver todo']+comunas
 proyectos=list(data1.nombre_proyecto.unique())
-proyectos2=['VER TODOS']+proyectos
+proyectos2=['Ver todo']+proyectos
 dict_proy = {}
 for comuna in data1.comuna_proy.unique():
        dict_proy[comuna] = list(data1[data1.comuna_proy==comuna].nombre_proyecto.unique())
@@ -158,33 +158,36 @@ for comuna in data1.comuna_proy.unique():
 
 #with col3:
 selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
-if selector_comuna=='VER TODAS':
+if selector_comuna=='Ver todas':
         filtro_comuna=comunas
         bool_proyecto=True
         proyecto_com=proyectos2
        
-if selector_comuna!='VER TODAS':
+if selector_comuna!='Ver todo':
         bool_proyecto=False
-        filtro_comuna=selector_comuna
+        filtro_comuna=list(selector_comuna)
         proyecto_com=dict_proy[selector_comuna]
 
        
 #with col4:
 
-
 selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyecto_com,disabled=bool_proyecto)
 
-st.write('You selected:', filtro_comuna)  
-
-if selector_proyecto=='VER TODOS':
+if selector_proyecto=='Ver todo':
     filtro_proyectos=proyectos
+if selector_proyecto!='Ver todo':
+    filtro_proyectos=list(proyectos)
 
+st.write('You selected:', filtro_proyectos)
 
 data_v2 = data1.copy()
 data_v2['reservado2'] = 0
 
 
 # filtros william
+data_v2=data_v2[data_v2.comuna_proy.isin(filtro_comuna)]
+data_v2=data_v2[data_v2.nombre_proyecto.isin(filtro_proyectos)]
+
 
 data_v2.loc[data_v2.reservado=='Sí', 'reservado2']=1
 data_v2 = data_v2.groupby(['fecha','periodo']).agg({'reservado2':['count','sum']}).reset_index()
