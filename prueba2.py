@@ -104,7 +104,7 @@ if choose == "Visualizaciones":
 ################ PRIMERA VIZUALIZACION ###############################
 ######################################################################
     st.title("Visualizaciones")
-    st.subheader('UF por m2 aperturado por comuna del proyecto')
+    st.subheader('Monto cotizacion por comuna y si es venta')
     data_v1=data1.sample(6000,random_state=3).copy()
 
     programas=list(data1.programa.unique())
@@ -113,9 +113,9 @@ if choose == "Visualizaciones":
     col1, col2 = st.columns(2)
 
     with col1:
-           slider_banos = st.slider('Número de baños',1, 4, (1,4),step=1)
+           slider_banos = st.slider('Número de baños:',1, 4, (1,4),step=1)
     with col2:
-           slider_dormitorios = st.slider('Número de dorm',1, 5, (1,5),step=1)
+           slider_dormitorios = st.slider('Número de dormitorios:',1, 5, (1,5),step=1)
 
     data_v1=data_v1[ (data_v1['n_banos']>=slider_banos[0]) & (data_v1['n_banos']<=slider_banos[1])]
     data_v1=data_v1[(data_v1['n_dorm']>=slider_dormitorios[0]) & (data_v1['n_dorm']<=slider_dormitorios[1])]
@@ -135,7 +135,7 @@ if choose == "Visualizaciones":
             axis=alt.Axis(values=[0], ticks=True, grid=False, labels=False),
             scale=alt.Scale(),
         ),
-        y=alt.Y('uf_m2:Q', title='UF por m2'),
+        y=alt.Y('uf_m2:Q', title='UF por m2 sobre el precio'),
         color=color,
         tooltip = 'nombre_proyecto',
         column=alt.Column(
