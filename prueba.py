@@ -152,9 +152,9 @@ proyectos=list(data1.nombre_proyecto.unique())
 
 col3, col4 = st.columns(2)
 
-with col1:
+with col3:
        selector_comuna = st.multiselect('Selecciona la(s) comunas a observar:', comunas ,comunas)
-with col2:
+with col4:
        selector_proyecto = st.multiselect('Selecciona el(los) proyecto(s) a observar:', proyectos ,proyectos)
 
 
