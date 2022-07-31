@@ -137,3 +137,44 @@ if len(tipos_dpto)==0:
        st.subheader('No hay cotizaciones para los filtros seleccionados')
 else:
        stripplot | legend
+
+       
+       
+################### VIZUALIZACION 2 ######################################
+st.subheader('Precios de cotización y venta por comuna')
+
+data_v2 = data1.copy()
+data_v2['reservado2'] = 0
+
+# filtros william
+
+data_v2.loc[data_v2.reservado=='Sí', 'reservado2']=1
+data_v2 = data_v2.groupby(['fecha','periodo']).agg({'reservado2':['count','sum']}).reset_index()
+data_v2.columns = ['fecha','periodo','cotizaciones','reservas']
+data_v2['tasa'] = data_v2.reservas/data_v2.cotizaciones
+data_v2['fecha']=data_v2.fecha.astype(str)
+
+
+
+
+base = alt.Chart(data_v2[['fecha','periodo','cotizaciones','tasa']]).encode(alt.X('fecha:O', title=None))
+
+bar = base.mark_bar(color='#AECDE1').encode(alt.Y('cotizaciones:Q',
+                             axis=alt.Axis(title='Cotizaciones', 
+                                           titleColor='#98B2C5',
+                                           titleFontSize=14)),
+                             tooltip=['cotizaciones',alt.Tooltip('tasa:Q', format='.1%',title='concreción')]).interactive()
+
+
+line =  base.mark_line(point=alt.OverlayMarkDef(color="#EC5A53"),color='#EC5A53').encode(alt.Y('tasa:Q',
+                             axis=alt.Axis(title='Tasa de Concreción', 
+                                           titleColor='#EC5A53',
+                                           titleFontSize=14,
+                                           format='%')),
+                             tooltip=['cotizaciones',alt.Tooltip('tasa:Q', format='.1%',title='concreción')]).interactive()
+
+chart = alt.layer(bar, line).resolve_scale(
+    y = 'independent'
+)
+
+chart
