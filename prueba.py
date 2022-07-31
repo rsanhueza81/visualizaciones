@@ -158,7 +158,7 @@ with col3:
 with col4:
        selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyectos2)
 
-       if selector_comuna=='VER TODOS':
+if selector_comuna=='VER TODOS':
        filtro_comuna=comunas
        
 if selector_proyecto=='VER TODOS':
