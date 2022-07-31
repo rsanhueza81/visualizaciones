@@ -148,16 +148,22 @@ st.subheader('Precios de cotización y venta por comuna')
 
 
 comunas=list(data1.comuna_proy.unique())
+comunas2=['VER TODAS']+comunas
 proyectos=list(data1.nombre_proyecto.unique())
-
+proyectos2=['VER TODOS']+proyectos
 col3, col4 = st.columns(2)
 
 with col3:
-       selector_comuna = st.multiselect('Selecciona la(s) comunas a observar:', comunas ,comunas)
+       selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
 with col4:
-       selector_proyecto = st.multiselect('Selecciona el(los) proyecto(s) a observar:', proyectos ,proyectos)
-option = st.selectbox('How would you like to be contacted?',['Email', 'Home phone', 'Mobile phone'])
+       selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyectos2)
 
+       if selector_comuna=='VER TODOS':
+       filtro_comuna=comunas
+       
+if selector_proyecto=='VER TODOS':
+       filtro_proyectos=proyectos
+ 
 data_v2 = data1.copy()
 data_v2['reservado2'] = 0
 
