@@ -188,40 +188,55 @@ st.write('You selected:', filtro_proyectos)
 data_v2 = data1.copy()
 data_v2['reservado2'] = 0
 
-
+magnitud='cantidad'
 # filtros william
 data_v2=data_v2[data_v2.comuna_proy.isin(filtro_comuna)]
 data_v2=data_v2[data_v2.nombre_proyecto.isin(filtro_proyectos)]
 
 
 data_v2.loc[data_v2.reservado=='Sí', 'reservado2']=1
-data_v2 = data_v2.groupby(['fecha','periodo']).agg({'reservado2':['count','sum']}).reset_index()
-data_v2.columns = ['fecha','periodo','cotizaciones','reservas']
-data_v2['tasa'] = data_v2.reservas/data_v2.cotizaciones
+data_v2['monto'] = (data_v2.precio * data_v2.reservado2).astype(int)
+data_v2 = data_v2.groupby(['fecha','periodo']).agg({'reservado2':['count','sum'],'monto':['sum'],'precio':['sum']}).reset_index()
+data_v2.columns = ['fecha','periodo','cantidad','reservas','monto','monto_total']
+data_v2['tasa_cantidad'] = data_v2.reservas/data_v2.cantidad
+data_v2['tasa_monto'] = data_v2.monto/data_v2.monto_total
 data_v2['fecha']=data_v2.fecha.astype(str)
 
+if magnitud=='cantidad':
+    title_y1 = 'Cantidad Cotizacionnes'
+    title_y2 = 'Tasa Cotizaciones Concretadas'
+elif magnitud=='monto':
+    title_y1 = 'Monto Total'
+    title_y2 = 'Tasa Monto Concretado'
 
 
+base = alt.Chart(data_v2).encode(alt.X('fecha:O', title=None))
 
-base = alt.Chart(data_v2[['fecha','periodo','cotizaciones','tasa']]).encode(alt.X('fecha:O', title=None))
-
-bar = base.mark_bar(color='#AECDE1').encode(alt.Y('cotizaciones:Q',
-                             axis=alt.Axis(title='Cotizaciones', 
+bar = base.mark_bar(color='#AECDE1').encode(alt.Y(f'{magnitud}:Q',
+                             axis=alt.Axis(title=title_y1, 
                                            titleColor='#98B2C5',
                                            titleFontSize=14)),
-                             tooltip=['cotizaciones',alt.Tooltip('tasa:Q', format='.1%',title='concreción')]).interactive()
+                             tooltip=[
+                                 alt.Tooltip('cantidad', title='Cantidad cotizaciones'),
+                                 alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa cot. concretadas'),
+                                 alt.Tooltip('monto', title='Monto total'),
+                                 alt.Tooltip('tasa_monto', format='.1%', title='Tasa monto concretado'),
+                             ]).interactive()
 
-
-line =  base.mark_line(point=alt.OverlayMarkDef(color="#EC5A53"),color='#EC5A53').encode(alt.Y('tasa:Q',
-                             axis=alt.Axis(title='Tasa de Concreción', 
+line =  base.mark_line(point=alt.OverlayMarkDef(color="#EC5A53"),color='#EC5A53').encode(alt.Y(f'tasa_{magnitud}:Q',
+                             axis=alt.Axis(title=title_y2, 
                                            titleColor='#EC5A53',
                                            titleFontSize=14,
                                            format='%')),
-                             tooltip=['cotizaciones',alt.Tooltip('tasa:Q', format='.1%',title='concreción')]).interactive()
-
+                             tooltip=[
+                                 alt.Tooltip('cantidad', title='Cantidad cotizaciones'),
+                                 alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa cotizaciones concretadas'),
+                                 alt.Tooltip('monto', title='Monto total'),
+                                 alt.Tooltip('tasa_monto', format='.1%', title='Tasa monto concretado'),
+                             ]).interactive()
 chart = alt.layer(bar, line).resolve_scale(
     y = 'independent'
 )
 
-chart=chart.properties(width=600,height=300)
+chart=chart.properties(width=800,height=400)
 chart
