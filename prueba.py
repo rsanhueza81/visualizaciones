@@ -157,7 +157,12 @@ for comuna in data1.comuna_proy.unique():
 col3, col4 = st.columns([1,3])
 
 with col3:
-       magnitud = st.radio("¿Qué quiere medir?",['Cantidad', 'Monto (UF)'])
+       magnitudes = st.radio("¿Qué quiere medir?",['Cantidad', 'Monto (UF)'])
+       if magnitudes=='Cantidad':
+              magnitud='cantidad'
+       if magnitudes=='Monto (UF)':
+              magnitud='monto'
+       
        selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
 
        if selector_comuna=='Ver todo':
@@ -204,10 +209,10 @@ data_v2['tasa_cantidad'] = data_v2.reservas/data_v2.cantidad
 data_v2['tasa_monto'] = data_v2.monto/data_v2.monto_total
 data_v2['fecha']=data_v2.fecha.astype(str)
 
-if magnitud=='Cantidad':
+if magnitud=='cantidad':
     title_y1 = 'Cantidad Cotizaciones'
     title_y2 = 'Tasa Cotizaciones Concretadas'
-elif magnitud=='Monto (UF)':
+elif magnitud=='monto':
     title_y1 = 'Monto Total (UF)'
     title_y2 = 'Tasa Monto Concretado'
 
