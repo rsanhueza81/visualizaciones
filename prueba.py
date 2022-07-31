@@ -154,37 +154,37 @@ proyectos2=['Ver todo']+proyectos
 dict_proy = {}
 for comuna in data1.comuna_proy.unique():
        dict_proy[comuna] = list(data1[data1.comuna_proy==comuna].nombre_proyecto.unique())
-#col3, col4 = st.columns(2)
+col3, col4 = st.columns([1,3])
 
-#with col3:
-selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
+with col3:
+       selector_comuna = st.selectbox('Selecciona la comuna a revisar',comunas2)
 
-if selector_comuna=='Ver todo':
-        filtro_comuna=comunas
-        bool_proyecto=True
-        proyecto_com=proyectos2
+       if selector_comuna=='Ver todo':
+               filtro_comuna=comunas
+               bool_proyecto=True
+               proyecto_com=proyectos2
+
+       if selector_comuna!='Ver todo':
+               bool_proyecto=False
+               filtro_comuna=[selector_comuna]
+               proyecto_com=['Comuna completa']+dict_proy[selector_comuna]
+
+
        
-if selector_comuna!='Ver todo':
-        bool_proyecto=False
-        filtro_comuna=[selector_comuna]
-        proyecto_com=['Comuna completa']+dict_proy[selector_comuna]
 
-       
-#with col4:
+       selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyecto_com,disabled=bool_proyecto)
 
-selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyecto_com,disabled=bool_proyecto)
+       if selector_proyecto=='Ver todo':
+           filtro_proyectos=proyecto_com
 
-if selector_proyecto=='Ver todo':
-    filtro_proyectos=proyecto_com
+       elif selector_proyecto=='Comuna completa':
+           filtro_proyectos=proyecto_com
 
-elif selector_proyecto=='Comuna completa':
-    filtro_proyectos=proyecto_com
-
-else:# selector_proyecto!='Ver todo':
-    filtro_proyectos=[selector_proyecto]
+       else:# selector_proyecto!='Ver todo':
+           filtro_proyectos=[selector_proyecto]
 
 
-magnitud = st.radio("¿Qué quiere medir?",['cantidad', 'monto'])
+       magnitud = st.radio("¿Qué quiere medir?",['cantidad', 'monto'])
 
 ######################## ALTAIR ###################################
 data_v2 = data1.copy()
@@ -210,34 +210,34 @@ elif magnitud=='monto':
     title_y1 = 'Monto Total (UF)'
     title_y2 = 'Tasa Monto Concretado'
 
+with col4:
+       base = alt.Chart(data_v2).encode(alt.X('fecha:O', title=None))
 
-base = alt.Chart(data_v2).encode(alt.X('fecha:O', title=None))
+       bar = base.mark_bar(color='#AECDE1').encode(alt.Y(f'{magnitud}:Q',
+                                    axis=alt.Axis(title=title_y1, 
+                                                  titleColor='#98B2C5',
+                                                  titleFontSize=14)),
+                                    tooltip=[
+                                        alt.Tooltip('cantidad', title='Cantidad cotizaciones'),
+                                        alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa cot. concretadas'),
+                                        alt.Tooltip('monto', title='Monto total'),
+                                        alt.Tooltip('tasa_monto', format='.1%', title='Tasa monto concretado'),
+                                    ]).interactive()
 
-bar = base.mark_bar(color='#AECDE1').encode(alt.Y(f'{magnitud}:Q',
-                             axis=alt.Axis(title=title_y1, 
-                                           titleColor='#98B2C5',
-                                           titleFontSize=14)),
-                             tooltip=[
-                                 alt.Tooltip('cantidad', title='Cantidad cotizaciones'),
-                                 alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa cot. concretadas'),
-                                 alt.Tooltip('monto', title='Monto total'),
-                                 alt.Tooltip('tasa_monto', format='.1%', title='Tasa monto concretado'),
-                             ]).interactive()
+       line =  base.mark_line(point=alt.OverlayMarkDef(color="#EC5A53"),color='#EC5A53').encode(alt.Y(f'tasa_{magnitud}:Q',
+                                    axis=alt.Axis(title=title_y2, 
+                                                  titleColor='#EC5A53',
+                                                  titleFontSize=14,
+                                                  format='%')),
+                                    tooltip=[
+                                        alt.Tooltip('cantidad', title='Cantidad cotizaciones'),
+                                        alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa cotizaciones concretadas'),
+                                        alt.Tooltip('monto', title='Monto total'),
+                                        alt.Tooltip('tasa_monto', format='.1%', title='Tasa monto concretado'),
+                                    ]).interactive()
+       chart = alt.layer(bar, line).resolve_scale(
+           y = 'independent'
+       )
 
-line =  base.mark_line(point=alt.OverlayMarkDef(color="#EC5A53"),color='#EC5A53').encode(alt.Y(f'tasa_{magnitud}:Q',
-                             axis=alt.Axis(title=title_y2, 
-                                           titleColor='#EC5A53',
-                                           titleFontSize=14,
-                                           format='%')),
-                             tooltip=[
-                                 alt.Tooltip('cantidad', title='Cantidad cotizaciones'),
-                                 alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa cotizaciones concretadas'),
-                                 alt.Tooltip('monto', title='Monto total'),
-                                 alt.Tooltip('tasa_monto', format='.1%', title='Tasa monto concretado'),
-                             ]).interactive()
-chart = alt.layer(bar, line).resolve_scale(
-    y = 'independent'
-)
-
-chart=chart.properties(width=800,height=400)
-chart
+       chart=chart.properties(width=800,height=400)
+       chart
