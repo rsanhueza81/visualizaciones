@@ -184,7 +184,7 @@ else:# selector_proyecto!='Ver todo':
     filtro_proyectos=[selector_proyecto]
 
 
-magnitud = st.radio("¿Qué quiere medir?",'cantidad', 'monto')
+magnitud = st.radio("¿Qué quiere medir?",['cantidad', 'monto'])
 
 ######################## ALTAIR ###################################
 data_v2 = data1.copy()
