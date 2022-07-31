@@ -113,8 +113,8 @@ if choose == "Visualizaciones":
     st.title("Visualizaciones")
           
 ################### VIZUALIZACION 1 ######################################
-    st.subheader('Precios de cotización y venta por comuna')
-
+    st.subheader('Evolución volumen de cotizaciones y tasas de concreción')
+    st.text("Tasas de concreción medida como ventas/cotizaciones en periodo")
     ######################## CODIGO SELECTORES ###################################
 
     comunas=list(data1.comuna_proy.unique())
@@ -179,7 +179,7 @@ if choose == "Visualizaciones":
 
     if magnitud=='cantidad':
         title_y1 = 'Cantidad Cotizaciones'
-        title_y2 = 'Tasa Cotizaciones Concretadas'
+        title_y2 = 'Tasa Concreción cotizaciones'
     elif magnitud=='monto':
         title_y1 = 'Monto Total (UF)'
         title_y2 = 'Tasa Monto Concretado'
