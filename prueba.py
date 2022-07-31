@@ -160,10 +160,14 @@ with col4:
 
 if selector_comuna=='VER TODOS':
        filtro_comuna=comunas
+       bool_proyecto==True
+if selector_comuna !='VER TODOS':
+       bool_proyecto==False
        
 if selector_proyecto=='VER TODOS':
        filtro_proyectos=proyectos
- 
+
+
 data_v2 = data1.copy()
 data_v2['reservado2'] = 0
 
