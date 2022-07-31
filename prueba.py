@@ -156,7 +156,7 @@ with col3:
        selector_comuna = st.multiselect('Selecciona la(s) comunas a observar:', comunas ,comunas)
 with col4:
        selector_proyecto = st.multiselect('Selecciona el(los) proyecto(s) a observar:', proyectos ,proyectos)
-
+option = st.selectbox('How would you like to be contacted?',['Email', 'Home phone', 'Mobile phone'])
 
 data_v2 = data1.copy()
 data_v2['reservado2'] = 0
