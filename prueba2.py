@@ -179,7 +179,7 @@ if choose == "Visualizaciones":
 
     if magnitud=='cantidad':
         title_y1 = 'Cantidad Cotizaciones'
-        title_y2 = 'Tasa Concreción cotizaciones'
+        title_y2 = 'Tasa concreción cotizaciones'
     elif magnitud=='monto':
         title_y1 = 'Monto Total (UF)'
         title_y2 = 'Tasa Monto Concretado'
@@ -193,9 +193,9 @@ if choose == "Visualizaciones":
                                                       titleFontSize=14)),
                                         tooltip=[
                                             alt.Tooltip('cantidad', title='Cantidad cotizaciones'),
-                                            alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa cot. concretadas'),
+                                            alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa concreción cotizaciones'),
                                             alt.Tooltip('monto', title='Monto total'),
-                                            alt.Tooltip('tasa_monto', format='.1%', title='Tasa monto concretado'),
+                                            alt.Tooltip('tasa_monto', format='.1%', title='Tasa concreción cotizaciones'),
                                         ]).interactive()
 
            line =  base.mark_line(point=alt.OverlayMarkDef(color="#EC5A53"),color='#EC5A53').encode(alt.Y(f'tasa_{magnitud}:Q',
@@ -205,9 +205,9 @@ if choose == "Visualizaciones":
                                                       format='%')),
                                         tooltip=[
                                             alt.Tooltip('cantidad', title='Cantidad cotizaciones'),
-                                            alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa cotizaciones concretadas'),
+                                            alt.Tooltip('tasa_cantidad', format='.1%',title='Tasa concreción cotizaciones'),
                                             alt.Tooltip('monto', title='Monto total'),
-                                            alt.Tooltip('tasa_monto', format='.1%', title='Tasa monto concretado'),
+                                            alt.Tooltip('tasa_monto', format='.1%', title='Tasa concreción cotizaciones'),
                                         ]).interactive()
            chart = alt.layer(bar, line).resolve_scale(
                y = 'independent'
