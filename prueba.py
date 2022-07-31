@@ -175,9 +175,10 @@ if selector_comuna!='Ver todo':
 selector_proyecto = st.selectbox('Selecciona el proyecto a revisar',proyecto_com,disabled=bool_proyecto)
 
 if selector_proyecto=='Ver todo':
-    filtro_proyectos=proyectos
+    filtro_proyectos=proyecto_com
+
 if selector_proyecto!='Ver todo':
-    filtro_proyectos=list(proyectos)
+    filtro_proyectos=list(selector_proyecto)
 
 st.write('You selected:', filtro_proyectos)
 
