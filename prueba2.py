@@ -182,7 +182,7 @@ if choose == "Visualizaciones":
         title_y2 = 'Tasa concreción cotizaciones'
     elif magnitud=='monto':
         title_y1 = 'Monto Total (UF)'
-        title_y2 = 'Tasa Monto Concretado'
+        title_y2 = 'Tasa concreción cotizaciones'
 
     with col4:
            base = alt.Chart(data_v2).encode(alt.X('fecha:O', title=None))
