@@ -19,8 +19,11 @@ data = pd.read_csv('almagro_cot.csv')
 
 data1 = data.copy()
 data1 = data1[data1['Tipo Unidad'] =='Departamento']
-data1 = data1[['N° Dormitorios','N° Baños','Comuna Proyecto','Precio de Venta en Uf Cotizacion','Metros Cuadrados','Estado Civil','Comuna Cliente', 'Edad', 'Programa','Fecha Reserva','Nombre Proyecto']]
-data1.columns = ['n_dormitorios', 'n_baños', 'comuna_proy', 'precio','m2','estado_civil','comuna_cli', 'edad','programa','fecha_reserva','nombre_proyecto']
+data1['fecha'] = pd.to_datetime(data['Fecha Cotizacion']).dt.to_period('M').astype(str)
+data1['periodo'] = pd.to_datetime(data['Fecha Cotizacion']).dt.strftime('%b-%Y')
+
+data1 = data1[['N° Dormitorios','N° Baños','Comuna Proyecto','Precio de Venta en Uf Cotizacion','Metros Cuadrados','Estado Civil','Comuna Cliente', 'Edad', 'Programa','Fecha Reserva','Nombre Proyecto','fecha','periodo']]
+data1.columns = ['n_dormitorios', 'n_baños', 'comuna_proy', 'precio','m2','estado_civil','comuna_cli', 'edad','programa','fecha_reserva','nombre_proyecto','fecha','periodo']
 
 data1['n_dorm']=data1.n_dormitorios.astype(int)
 data1['n_dormitorios'] = data1.n_dormitorios.astype(int).astype(str)
